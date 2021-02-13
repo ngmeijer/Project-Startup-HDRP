@@ -22,6 +22,8 @@ public class InGameSimpleButtonBoltCallback : Bolt.GlobalEventListener
 
         public override void OnEvent(SimpleButtonBoltEvent evnt)
         {
+            BoltLog.Warn($"{this} evt received | {evnt}");
+            
             if (evnt.ParentId != _parentId || evnt.Id != _id)
             {
                 return;

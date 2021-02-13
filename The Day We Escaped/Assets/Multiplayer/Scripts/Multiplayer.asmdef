@@ -1,7 +1,8 @@
 {
     "name": "Multiplayer",
     "references": [
-        "GUID:21c3fac9e13ff824f988d65525ea5cb0"
+        "GUID:21c3fac9e13ff824f988d65525ea5cb0",
+        "GUID:7a713add54f38894ca913423b2dce828"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
