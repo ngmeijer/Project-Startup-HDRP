@@ -7,9 +7,7 @@ public class PrisionCellsController : MonoBehaviour
 {
     [SerializeField] private SimpleStateBehaviour[] _cellsBehaviours;
     private int[] cellsNumbers;
-
-    public UnityEvent[] notifyCell;
-    public UnityEvent[] notifyCellInServer;
+    
     public UnityEvent notifyFail;
     public StringArrayUnityEvent notifySuccess;
 
@@ -30,11 +28,9 @@ public class PrisionCellsController : MonoBehaviour
             
             notifySuccess?.Invoke(msg);
             
-            notifyCell[cellIndex]?.Invoke();
-
             if (BoltNetwork.IsServer)
             {
-                notifyCellInServer[cellIndex]?.Invoke();
+                cell.ToggleStateInServer();
             }
         }
         else

@@ -33,17 +33,14 @@ public class PrisionCellsKeypadControllerEditorWindow : EditorWindow
         foreach (var button in buttons)
         {
             CleanPersistentListeners(button.onEventReceived);
-            CleanPersistentListeners(button.onEventReceivedInServer);
 
             var tweenMove = button.GetComponent<TweenMove>();
             
             UnityEventTools.AddPersistentListener(button.onEventReceived, tweenMove.Play);
-            UnityEventTools.AddPersistentListener(button.onEventReceivedInServer, tweenMove.Play);
 
             var inGameInputReceiver = keyPadGameObject.GetComponent<InGameInputReceiver>();
             
             UnityEventTools.AddStringPersistentListener(button.onEventReceived, inGameInputReceiver.ReceiveInput, button.Id.ToString());
-            UnityEventTools.AddStringPersistentListener(button.onEventReceivedInServer, inGameInputReceiver.ReceiveInput, button.Id.ToString());
             
             EditorUtility.SetDirty(button);
         }

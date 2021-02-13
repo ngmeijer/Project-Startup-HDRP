@@ -19,7 +19,6 @@ public class InGameSimpleButtonBoltCallback : Bolt.GlobalEventListener
         [SerializeField] private bool _disabled;
 
         public UnityEvent onEventReceived;
-        public UnityEvent onEventReceivedInServer;
 
         public override void OnEvent(SimpleButtonBoltEvent evnt)
         {
@@ -35,14 +34,7 @@ public class InGameSimpleButtonBoltCallback : Bolt.GlobalEventListener
 
             StartCoroutine(LockDelayRoutine());
             
-            if (BoltNetwork.IsServer)
-            {
-                onEventReceivedInServer?.Invoke();
-            }
-            else
-            {
-                onEventReceived?.Invoke();
-            }
+            onEventReceived?.Invoke();
         }
 
         private IEnumerator LockDelayRoutine()
