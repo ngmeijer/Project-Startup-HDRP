@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Player
 {
+    [RequireComponent(typeof(Rigidbody))]
     public class PlayerMovement : MonoBehaviour
     {
         private Rigidbody _rb;
@@ -49,7 +50,7 @@ namespace Player
         {
             if (Input.GetKeyDown(KeyCode.LeftControl))
             {
-                
+
             }
         }
     }

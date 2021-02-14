@@ -20,7 +20,7 @@ public class FOVAdvanced : MonoBehaviour, ISubject
     private bool _foundTarget;
 
     private float _timer;
-    public List<IObserver> _observerList { get; }
+    public List<IObserver> _observerList { get; } = new List<IObserver>();
 
     public EnemyAlertLevel AlertLevel { get; private set; }
 

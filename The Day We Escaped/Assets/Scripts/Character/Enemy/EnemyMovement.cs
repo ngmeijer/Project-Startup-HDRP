@@ -5,15 +5,16 @@ using UnityEngine.AI;
 
 namespace Enemy
 {
+    [RequireComponent(typeof(NavMeshAgent))]
     public class EnemyMovement : MonoBehaviour, IObserver
     {
         private EnemyAlertLevel alertLevel;
         private NavMeshAgent agent;
+        private Transform lastTarget;
         private Transform currentTarget;
-        private Transform targetCandidate;
+        private Transform nextTarget;
         private bool arrivedAtTarget;
         private float timer;
-
 
         [SerializeField]
         [Tooltip("How long should the NPC remain idle at the target point?")]
@@ -51,20 +52,17 @@ namespace Enemy
             }
 
             findPossibleWaypoints();
-
             setNewDestination();
         }
 
         private void Update()
         {
-            //Choose random point from list of patrolPoints. Then based on which one was chosen, choose a new one after arriving on point, or after certain duration.
-
-            if (checkIfArrived() && delayBeforeMoving != 0)
+            if (checkIfArrivedAtTarget() && delayBeforeMoving != 0)
             {
                 timer += Time.deltaTime;
             }
 
-            if (timer >= delayBeforeMoving && checkIfArrived())
+            if (timer >= delayBeforeMoving && checkIfArrivedAtTarget())
             {
                 setNewDestination();
                 timer = 0;
@@ -75,6 +73,7 @@ namespace Enemy
 
         private void findPossibleWaypoints()
         {
+            //Only executed at start.
             int amountOfWaypoints = _patrolPointsParent.transform.childCount;
 
             for (int index = 0; index < amountOfWaypoints; index++)
@@ -88,12 +87,16 @@ namespace Enemy
         {
             arrivedAtTarget = false;
 
+            lastTarget = currentTarget;
+
             Transform newPoint = findNewTargetPoint();
 
             while (checkNewTargetPointDistance(newPoint) == false)
             {
                 newPoint = findNewTargetPoint();
             }
+
+            currentTarget = newPoint;
 
             agent.SetDestination(newPoint.position);
         }
@@ -104,16 +107,16 @@ namespace Enemy
 
             Transform newTarget = _patrolPoints[index];
 
-            currentTarget = newTarget;
+            //currentTarget = newTarget;
 
             return newTarget;
         }
 
-        private bool checkNewTargetPointDistance(Transform newTarget)
+        private bool checkNewTargetPointDistance(Transform pNewTarget)
         {
             bool withinGivenRanges = false;
-            targetCandidate = newTarget;
-            float distance = Vector3.Distance(transform.position, newTarget.position);
+            nextTarget = pNewTarget;
+            float distance = Vector3.Distance(transform.position, pNewTarget.position);
 
             if (distance >= minDistanceToNewPoint && distance <= maxDistanceToNewPoint)
             {
@@ -129,7 +132,16 @@ namespace Enemy
             return withinGivenRanges;
         }
 
-        private bool checkIfArrived()
+        private bool checkNewTargetHistory(Transform pLastTarget)
+        {
+            bool wasPlayersLastTarget = false;
+
+
+
+            return wasPlayersLastTarget;
+        }
+
+        private bool checkIfArrivedAtTarget()
         {
             bool arrived = false;
 
@@ -151,17 +163,17 @@ namespace Enemy
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, maxDistanceToNewPoint);
 
-            if (targetCandidate != null)
+            if (nextTarget != null)
             {
                 Gizmos.color = Color.magenta;
-                Gizmos.DrawSphere(targetCandidate.position, 1.8f);
+                Gizmos.DrawSphere(nextTarget.position, 1f);
 
                 foreach (Transform target in _patrolPoints)
                 {
-                    if (target != targetCandidate)
+                    if (target != nextTarget)
                     {
                         Gizmos.color = Color.grey;
-                        Gizmos.DrawSphere(target.position, 1f);
+                        Gizmos.DrawSphere(target.position, 0.3f);
                     }
                 }
             }
