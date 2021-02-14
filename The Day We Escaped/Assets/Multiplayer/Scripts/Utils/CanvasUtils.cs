@@ -1,5 +1,6 @@
 ﻿using UnityEditor;
 using UnityEngine;
+using UnityEngine.U2D;
 using UnityEngine.UI;
 
 namespace Multiplayer.Scripts.Utils
@@ -20,10 +21,24 @@ namespace Multiplayer.Scripts.Utils
             cs.matchWidthOrHeight = 0;
             
             newCanvas.AddComponent<GraphicRaycaster>();
-
-            GameObjectUtility.EnsureUniqueNameForSibling(newCanvas.gameObject);
-
+            
             return c;
+        }
+
+        public static Image CreateImageWithSprite(string pName, string pSpriteName, Vector2 pPos, Vector2 pSize, SpriteAtlas pAtlas, Canvas pCanvas)
+        {
+            var imageGameObject = new GameObject(pName, typeof(Image));
+            var image = imageGameObject.GetComponent<Image>();
+            image.rectTransform.SetParent(pCanvas.transform);
+            image.rectTransform.localPosition = Vector3.zero;
+            image.rectTransform.sizeDelta = Vector2.one * 8;
+                
+            var sprite = pAtlas.GetSprite(pSpriteName);
+            image.sprite = sprite;
+                
+            image.raycastTarget = false;
+
+            return image;
         }
     }
 }
