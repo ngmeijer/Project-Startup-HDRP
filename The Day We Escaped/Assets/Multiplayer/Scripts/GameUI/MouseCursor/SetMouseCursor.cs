@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class SetMouseCursor : MonoBehaviour
 {
+    [Tooltip("FindObjectOfType<MouseCursorUtils>() in Start()")]
     [SerializeField]
     private MouseCursorUtils _mouseCursorUtils;
     private bool _hasMouseCursorUtils;

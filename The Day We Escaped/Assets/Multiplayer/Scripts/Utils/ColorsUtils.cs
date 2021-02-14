@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
 
-namespace UnityTemplateProjects.Utils
+namespace Multiplayer.Scripts.Utils
 {
     public class ColorsUtils
     {
         private static Color[] _Colors = new Color[]
         {
-            Color.blue, 
-            Color.red, 
-            Color.gray, 
-            Color.yellow, 
-            Color.cyan, 
+            Color.blue,
+            Color.red,
+            Color.gray,
+            Color.yellow,
+            Color.cyan,
             Color.white,
         };
 

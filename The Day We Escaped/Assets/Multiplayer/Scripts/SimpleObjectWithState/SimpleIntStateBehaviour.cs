@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityTemplateProjects.CustomUnityEvents;
 
-public class SimpleStateBehaviour : Bolt.EntityEventListener<ISimpleIntState>
+public class SimpleIntStateBehaviour : Bolt.EntityEventListener<ISimpleIntState>
 {
     public int id;
     public int initialState = 0;
@@ -23,7 +23,7 @@ public class SimpleStateBehaviour : Bolt.EntityEventListener<ISimpleIntState>
         state.StateNumber = pStateNumber % notifier.Length;
     }
     
-    public void ToggleStateInServer()
+    public void NextStateInServer()
     {
         state.StateNumber = (state.StateNumber + 1) % notifier.Length;
     }

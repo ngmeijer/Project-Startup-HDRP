@@ -1,8 +1,7 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
 
-namespace UnityTemplateProjects.Utils
+namespace Multiplayer.Scripts.Utils
 {
     public class SetRendererRandomColor : MonoBehaviour
     {
