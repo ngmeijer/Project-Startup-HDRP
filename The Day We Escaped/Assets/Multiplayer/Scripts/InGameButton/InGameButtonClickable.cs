@@ -22,6 +22,5 @@ public class InGameButtonClickable : MonoBehaviour, IPointerClickHandler, IPoint
     public void OnPointerExit(PointerEventData eventData)
     {
         notifyOnExit?.Invoke();
-
     }
 }

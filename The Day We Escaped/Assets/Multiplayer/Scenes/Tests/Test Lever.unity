@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &40696677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,11 +432,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 648320879867047734, guid: 0f2c6539d909b4144a0b64e7e91837f3,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6925811228443642520, guid: 0f2c6539d909b4144a0b64e7e91837f3,
         type: 3}
       propertyPath: m_Name
@@ -671,7 +666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.29803923}
   m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -929,13 +924,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88deef876d46be942b3a1ca1650850a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crossHairImage: {fileID: 0}
-  onHoverCrossHairImage: {fileID: 0}
-  onHoverCursorIcon: {fileID: 0}
+  crossHairImage: {fileID: 1188991554}
+  onHoverCrossHairImage: {fileID: 942676346}
+  onHoverCursorIcon: {fileID: 2800000, guid: 08b6acf910db0c24b9167583ee336752, type: 3}
   cursorMode: 0
   cursorHotspot: {x: 0, y: 0}
-  spriteAtlas: {fileID: 4343727234628468602, guid: 8f1f8f8b4e8915c46bfe2d7ee60f1871,
-    type: 2}
 --- !u!4 &1362495974
 Transform:
   m_ObjectHideFlags: 0
@@ -944,7 +937,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1362495972}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.6571223, y: 0.27303928, z: 0.08570482}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

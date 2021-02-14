@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Bolt;
+using UnityEngine;
 using UnityTemplateProjects.CustomUnityEvents;
 
 public class SimpleIntStateBehaviour : Bolt.EntityEventListener<ISimpleIntState>
@@ -22,7 +23,20 @@ public class SimpleIntStateBehaviour : Bolt.EntityEventListener<ISimpleIntState>
     {
         state.StateNumber = pStateNumber % notifier.Length;
     }
+
+    /// <summary>
+    /// Send event to server
+    /// </summary>
+    public void SendNextStateBoltEvent()
+    {
+        var evnt = SimpleIntNextStateBoltEvent.Create(GlobalTargets.OnlyServer);
+        evnt.Entity = this.entity;
+        evnt.Send();
+    }
     
+    /// <summary>
+    /// Commonly executed by SimpleStateServerBoltCallback after receive bolt event 
+    /// </summary>
     public void NextStateInServer()
     {
         state.StateNumber = (state.StateNumber + 1) % notifier.Length;
