@@ -13797,7 +13797,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1579385770}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -53.8, y: 1.5, z: 15.73}
+  m_LocalPosition: {x: -22.05, y: 1.5, z: 16.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -16913,7 +16913,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1842831095}
   - component: {fileID: 1842831100}
-  - component: {fileID: 1842831099}
   - component: {fileID: 1842831098}
   - component: {fileID: 1842831097}
   - component: {fileID: 1842831096}
@@ -17078,14 +17077,6 @@ MonoBehaviour:
   _isInverted: 0
   _peakPosition: {x: -0.5, y: 0, z: 0}
   _peakSpeed: 1.5
---- !u!81 &1842831099
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1842831094}
-  m_Enabled: 1
 --- !u!20 &1842831100
 Camera:
   m_ObjectHideFlags: 0
@@ -18776,7 +18767,7 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
-  m_Intensity: 10
+  m_Intensity: 10000
   m_EnableSpotReflector: 0
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
@@ -18879,7 +18870,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 10
+  m_Intensity: 10000
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -19029,7 +19020,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2128609416}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20, y: 0.5, z: 15}
+  m_LocalPosition: {x: -20, y: 0.5, z: 15.611}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -69368,33 +69359,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 1592398849}
     m_Modifications:
     - target: {fileID: 117728403, guid: 6e9cfc1ce17a5d24bb94f5166c160bb4, type: 3}
-      propertyPath: delayBeforeMoving
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 117728403, guid: 6e9cfc1ce17a5d24bb94f5166c160bb4, type: 3}
       propertyPath: _patrolPointsParent
       value: 
       objectReference: {fileID: 1330126636}
-    - target: {fileID: 117728403, guid: 6e9cfc1ce17a5d24bb94f5166c160bb4, type: 3}
-      propertyPath: maxDistanceToNewPoint
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 117728404, guid: 6e9cfc1ce17a5d24bb94f5166c160bb4, type: 3}
-      propertyPath: _range
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 117728404, guid: 6e9cfc1ce17a5d24bb94f5166c160bb4, type: 3}
-      propertyPath: _dangerDelay
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 381431854, guid: 6e9cfc1ce17a5d24bb94f5166c160bb4, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 2001248622, guid: 6e9cfc1ce17a5d24bb94f5166c160bb4, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 83316237336771526, guid: 6e9cfc1ce17a5d24bb94f5166c160bb4,
         type: 3}
       propertyPath: m_RootOrder
@@ -69457,13 +69424,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2612484824915894076, guid: 6e9cfc1ce17a5d24bb94f5166c160bb4,
         type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 7848096355520621650, guid: 6e9cfc1ce17a5d24bb94f5166c160bb4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e9cfc1ce17a5d24bb94f5166c160bb4, type: 3}
