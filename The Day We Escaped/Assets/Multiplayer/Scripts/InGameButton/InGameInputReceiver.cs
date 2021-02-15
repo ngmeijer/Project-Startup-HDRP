@@ -35,9 +35,9 @@ public class InGameInputReceiver : MonoBehaviour
         if (_storedVal.Length == maxChars)
         {
             BoltLog.Warn($"{this} filled triggered | val: {_storedVal}");
-            
-            notifyFilled?.Invoke(_storedVal);
+
             _stopReceiveInput = true;
+            notifyFilled?.Invoke(_storedVal);
         }
     }
 
