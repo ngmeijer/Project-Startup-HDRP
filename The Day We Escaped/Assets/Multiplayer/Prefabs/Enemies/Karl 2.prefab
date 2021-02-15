@@ -10,15 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 381431855}
   - component: {fileID: 381431858}
-  - component: {fileID: 381431857}
   - component: {fileID: 381431856}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &381431855
 Transform:
   m_ObjectHideFlags: 0
@@ -76,14 +75,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &381431857
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 381431854}
-  m_Enabled: 1
 --- !u!114 &381431856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,7 +190,7 @@ GameObject:
   - component: {fileID: 2001248623}
   - component: {fileID: 2001248625}
   - component: {fileID: 2001248624}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -406,7 +397,7 @@ GameObject:
   - component: {fileID: 117728402}
   - component: {fileID: 117728403}
   - component: {fileID: 117728404}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Karl 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -493,9 +484,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bba85c7afdb97f48954b513e9a2540e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayBeforeMoving: 0
+  delayBeforeMoving: 1
   minDistanceToNewPoint: 5
-  maxDistanceToNewPoint: 5
+  maxDistanceToNewPoint: 20
   _patrolPointsParent: {fileID: 0}
 --- !u!114 &117728404
 MonoBehaviour:
@@ -510,7 +501,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dangerDelay: 0
-  _range: 0
+  _range: 5
   _intensity: 20
 --- !u!1001 &6929742248415662339
 PrefabInstance:
@@ -583,6 +574,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Model
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: edb3fd4195518cb4997434f159e448f4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: edb3fd4195518cb4997434f159e448f4, type: 3}
