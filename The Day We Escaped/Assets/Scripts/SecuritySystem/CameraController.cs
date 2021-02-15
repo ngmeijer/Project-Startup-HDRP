@@ -12,6 +12,10 @@ namespace Player
         [SerializeField] private float _mouseSensitivityX = 90f;
         [SerializeField] private float _mouseSensitivityY = 90f;
         [SerializeField] private bool _isInverted = true;
+
+        [SerializeField] private Vector3 _peakPosition;
+        [SerializeField] private float _peakSpeed = 1f;
+
         private int _inversionValue = -1;
 
         private Animator anim;
@@ -25,10 +29,19 @@ namespace Player
             else
                 _inversionValue = -1;
 
+            anim = GetComponent<Animator>();
+
             Cursor.lockState = CursorLockMode.Locked;
         }
 
         private void FixedUpdate()
+        {
+            rotateCamera();
+            //sidePeakCamera();
+            zoomIn();
+        }
+
+        private void rotateCamera()
         {
             float lookHoriz = Input.GetAxisRaw("Mouse Y") * _mouseSensitivityX * Time.deltaTime;
             float lookVert = Input.GetAxisRaw("Mouse X") * _mouseSensitivityY * Time.deltaTime;
@@ -40,7 +53,7 @@ namespace Player
             //Vertical 
             transform.Rotate(Vector3.right * lookHoriz * _inversionValue);
 
-            zoomIn();
+            //Dont forget to clamp the rotation
         }
 
         private void zoomIn()
@@ -48,6 +61,19 @@ namespace Player
             if (Input.GetKeyDown(KeyCode.Space))
             {
 
+            }
+        }
+
+        private void sidePeakCamera()
+        {
+            if (Input.GetKey(KeyCode.Q))
+            {
+                anim.SetFloat("Blend", -_peakSpeed);
+            }
+
+            if (Input.GetKey(KeyCode.E))
+            {
+                anim.SetFloat("Blend", _peakSpeed);
             }
         }
     }

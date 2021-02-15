@@ -2,7 +2,7 @@
 using UnityEngine;
 
 
-[BoltGlobalBehaviour(BoltNetworkModes.Client, "Level Test", "MovementTestScene")]
+[BoltGlobalBehaviour(BoltNetworkModes.Client, "Level Test", "MovementTestScene", "Nils - Level 1")]
 public class LevelTestClientCallback : LevelTestCallbackBase
 {
     /// <summary>
