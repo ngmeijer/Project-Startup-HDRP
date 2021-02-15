@@ -154,14 +154,14 @@ namespace Enemy
             if (targetCandidate != null)
             {
                 Gizmos.color = Color.magenta;
-                Gizmos.DrawSphere(targetCandidate.position, 1.8f);
+                Gizmos.DrawSphere(targetCandidate.position, 0.8f);
 
                 foreach (Transform target in _patrolPoints)
                 {
                     if (target != targetCandidate)
                     {
                         Gizmos.color = Color.grey;
-                        Gizmos.DrawSphere(target.position, 1f);
+                        Gizmos.DrawSphere(target.position, 0.5f);
                     }
                 }
             }
