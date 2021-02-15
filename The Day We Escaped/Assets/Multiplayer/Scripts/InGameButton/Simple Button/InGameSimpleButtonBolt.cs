@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 
-public class InGameSimpleButtonBoltCallback : Bolt.GlobalEventListener
+public class InGameSimpleButtonBolt : Bolt.GlobalEventListener
     {
         [Tooltip("Lock states change for some time, avoid burst clicks")]
         public float lockChangeDelay = 1f;
