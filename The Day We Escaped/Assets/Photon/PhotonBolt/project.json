@@ -5059,6 +5059,29 @@
       "Groups": [
         "TDWE"
       ]
+    },
+    {
+      "$type": "Bolt.Compiler.EventDefinition, bolt.compiler",
+      "Properties": [
+        {
+          "Name": "Entity",
+          "Enabled": true,
+          "Expanded": true,
+          "ReplicationMode": 1,
+          "Priority": 1,
+          "PropertyType": {
+            "$type": "Bolt.Compiler.PropertyTypeEntity, bolt.compiler"
+          },
+          "AssetSettings": {
+            "$type": "Bolt.Compiler.PropertyEventSettings, bolt.compiler"
+          }
+        }
+      ],
+      "Name": "SimpleIntNextStateBoltEvent",
+      "Guid": "55408173-063f-411b-b372-eb889f694e2d",
+      "Groups": [
+        "TDWE"
+      ]
     }
   ],
   "ActiveGroup": "TDWE"

@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Multiplayer.Scripts.Utils;
 using UnityEngine;
+using UnityEngine.U2D;
 using UnityEngine.UI;
 
 public class MouseCursorUtils : MonoBehaviour
@@ -12,7 +15,12 @@ public class MouseCursorUtils : MonoBehaviour
 
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 cursorHotspot = Vector2.zero;
-
+    
+    private void Start()
+    {
+       
+    }
+    
     [ContextMenu("ShowMouseCursor")]
     public void ShowMouseCursor()
     {

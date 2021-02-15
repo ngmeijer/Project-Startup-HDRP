@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class PrisionCellsController : MonoBehaviour
 {
-    [SerializeField] private SimpleStateBehaviour[] _cellsBehaviours;
+    [SerializeField] private SimpleIntStateBehaviour[] _cellsBehaviours;
     private int[] cellsNumbers;
     
     public UnityEvent notifyFail;
@@ -30,7 +30,7 @@ public class PrisionCellsController : MonoBehaviour
             
             if (BoltNetwork.IsServer)
             {
-                cell.ToggleStateInServer();
+                cell.NextStateInServer();
             }
         }
         else

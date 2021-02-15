@@ -186,6 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21985970cba740ad88b09344d5b65dd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
   fromRotation: {x: -0, y: 0, z: -0}
   toRotation: {x: 0, y: -90, z: 0}
   space: 1
@@ -227,7 +228,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  rend: {fileID: 0}
   startCallback:
     m_PersistentCalls:
       m_Calls: []
@@ -281,7 +281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sceneGuid: 
   _serializerGuid: 9042d476-f93a-4d06-bb2f-a3e8fdf6634e
-  _prefabId: 4
+  _prefabId: 5
   _updateRate: 1
   _autoFreezeProxyFrames: 0
   _clientPredicted: 1
