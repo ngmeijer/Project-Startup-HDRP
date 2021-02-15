@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4566027996637050394}
   - component: {fileID: 7675886435457510225}
   - component: {fileID: 8489146909933328745}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Button Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,6 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46fddcbd59a84a03a9070cca330185df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lockDuration: 0
   notifyOnClick:
     m_PersistentCalls:
       m_Calls:
@@ -163,20 +164,6 @@ MonoBehaviour:
   _id: 0
   _disabled: 0
   onEventReceived:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1297721787262274000}
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onEventReceivedInServer:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1297721787262274000}

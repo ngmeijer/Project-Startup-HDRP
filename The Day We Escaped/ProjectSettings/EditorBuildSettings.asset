@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Multiplayer/Scenes/Tests/Test Lever.unity
     guid: f2b1124df2d3f4e40b7b93614528dfff
+  - enabled: 1
+    path: Assets/Multiplayer/Scenes/Tests/Test Door.unity
+    guid: afe3ee96df78f2e43be7aab7d875ca74
   m_configObjects: {}

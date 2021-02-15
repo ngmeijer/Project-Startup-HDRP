@@ -82,7 +82,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sceneGuid: 
   _serializerGuid: 508841f9-ebe0-4c1e-a168-d977255f1bd7
-  _prefabId: 4
+  _prefabId: 5
   _updateRate: 1
   _autoFreezeProxyFrames: 0
   _clientPredicted: 1
@@ -116,8 +116,8 @@ MonoBehaviour:
   _back: 0
   _left: 0
   _right: 0
-  minPitchAngle: -30
-  maxPitchAngle: 30
+  minPitchAngle: -60
+  maxPitchAngle: 60
 --- !u!136 &3140015334026627476
 CapsuleCollider:
   m_ObjectHideFlags: 0
