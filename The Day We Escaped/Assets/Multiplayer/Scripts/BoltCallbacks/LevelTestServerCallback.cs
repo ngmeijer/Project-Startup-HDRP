@@ -4,7 +4,7 @@ using Bolt;
 using UnityEngine;
 using UnityEngine.UI;
 
-[BoltGlobalBehaviour(BoltNetworkModes.Server, "Level Test", "MovementTestScene", "Nils - Level 1")]
+[BoltGlobalBehaviour(BoltNetworkModes.Server, "Level Test", "MovementTestScene", "Nils - Level 1", "Victor - Level 2")]
 public class LevelTestServerCallback : LevelTestCallbackBase
 {
     public override void SceneLoadRemoteDone(BoltConnection connection, IProtocolToken token)

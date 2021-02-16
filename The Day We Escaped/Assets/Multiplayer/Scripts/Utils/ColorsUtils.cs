@@ -19,5 +19,15 @@ namespace Multiplayer.Scripts.Utils
             var c = UnityEngine.Random.ColorHSV(0.2f, 1f, 0.2f, 1f, 0.2f, 1f, 1, 1);
             return _Colors[UnityEngine.Random.Range(0, _Colors.Length)] + c;
         }
+        
+        public static Color ConvertIntToColor(uint aCol)
+        {
+            Color c;
+            c.b = (byte)((aCol) & 0xFF);
+            c.g = (byte)((aCol>>8) & 0xFF);
+            c.r = (byte)((aCol>>16) & 0xFF);
+            c.a = (byte)((aCol>>24) & 0xFF);
+            return c;
+        }
     }
 }
