@@ -2,6 +2,7 @@
 using System.Collections;
 using Bolt.Matchmaking;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace MainMenu
@@ -12,13 +13,18 @@ namespace MainMenu
 
         [SerializeField] private Text _text;
 
+        public UnityEvent notifySceneLoading;
+        
         private void Start()
         {
-            _text.gameObject.SetActive(!BoltNetwork.IsServer);
+            if (!BoltNetwork.IsServer)
+            {
+                _text.text = "Server Player is choosing the Player number";
+            }
         }
 
         /// <summary>
-        /// Wait X seconds than load the scene
+        /// Wait X seconds than load the scene, runs only in server
         /// </summary>
         /// <param name="playerType"></param>
         public void LoadPlayerScene(int playerType)
@@ -28,6 +34,8 @@ namespace MainMenu
 
         private IEnumerator LoadPlayerSceneRoutine(int serverPlayerType)
         {
+            notifySceneLoading?.Invoke();
+            
             yield return new WaitForSeconds(3f);
 
             foreach (var entity in BoltNetwork.Entities)
