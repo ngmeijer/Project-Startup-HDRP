@@ -1,6 +1,4 @@
-﻿using System;
-using ICSharpCode.NRefactory.Ast;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace Multiplayer.Scripts.Utils

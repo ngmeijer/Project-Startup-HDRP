@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Multiplayer/Scenes/MainMenu_ChoosePlayer.unity
     guid: 35a0a99cbae53564b9176aad7b3172e6
   - enabled: 1
-    path: Assets/Multiplayer/Scenes/Victor/Victor - Level 2.unity
+    path: Assets/Multiplayer/Scenes/Victor/Victor - Level 1.unity
     guid: 05198a72120bcaf49b8dd11cbb47d5d6
   - enabled: 1
     path: Assets/Multiplayer/Scenes/Nils/Nils - Level 1.unity

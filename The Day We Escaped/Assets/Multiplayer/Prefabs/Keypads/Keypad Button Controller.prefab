@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46fddcbd59a84a03a9070cca330185df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockDuration: 0
+  lockDuration: 0.8
   notifyOnClick:
     m_PersistentCalls:
       m_Calls:
@@ -274,6 +274,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3029341381577317621}
     m_Modifications:
+    - target: {fileID: -4960910407407800661, guid: 1efd06c3dd2cf2f4e9308cca3a7a5b67,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: -4960910407407800661, guid: 1efd06c3dd2cf2f4e9308cca3a7a5b67,
         type: 3}
       propertyPath: MaxDistance
