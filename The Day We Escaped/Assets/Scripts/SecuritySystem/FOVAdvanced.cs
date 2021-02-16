@@ -15,7 +15,7 @@ public class FOVAdvanced : MonoBehaviour, ISubject, IObserverCB
 {
     private EnemyAlertLevel _alertLevel;
     private Camera _camera;
-    private List<Collider> _playerColliders = new List<Collider>();
+    [SerializeField] private List<Collider> _playerColliders = new List<Collider>();
     private Light _light;
     private bool _foundTarget;
     private Transform _target;
@@ -80,6 +80,7 @@ public class FOVAdvanced : MonoBehaviour, ISubject, IObserverCB
     {
         Plane[] planes = GeometryUtility.CalculateFrustumPlanes(_camera);
 
+        _foundTarget = false;
         foreach (Collider playerCollider in _playerColliders)
         {
             _target = playerCollider.transform;
@@ -93,10 +94,6 @@ public class FOVAdvanced : MonoBehaviour, ISubject, IObserverCB
                         _foundTarget = true;
                     }
                 }
-            }
-            else
-            {
-                _foundTarget = false;
             }
         }
 
