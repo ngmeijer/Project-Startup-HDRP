@@ -11,7 +11,10 @@ public class KeypadCodeValidator : MonoBehaviour
     public string UnlockCode = "LENIN";
 
     public UnityEvent NotifyCodeAccepted;
+    public UnityEvent NotifyAfterAccepted;
+    
     public UnityEvent NotifyCodeRejected;
+    public UnityEvent NotifyAfterRejected;
 
     [SerializeField] private Image[] _symbolImages;
     [SerializeField] private Sprite[] _symbolSprites;
@@ -22,22 +25,22 @@ public class KeypadCodeValidator : MonoBehaviour
     {
         _codeSpriteMaps = new Dictionary<string, int>()
         {
-            { "A", 0 },
-            { "B", 1 },
-            { "E", 2 },
-            { "I", 3 },
-            { "K", 4 },
-            { "L", 5 },
-            { "N", 6 },
-            { "O", 7 },
-            { "S", 8 },
-            { "W", 9 },
+            {"A", 0},
+            {"B", 1},
+            {"E", 2},
+            {"I", 3},
+            {"K", 4},
+            {"L", 5},
+            {"N", 6},
+            {"O", 7},
+            {"S", 8},
+            {"W", 9},
         };
     }
 
     public void OnCodeCompleted(string val)
     {
-        StartCoroutine(waitForDelayBeforeCodeValidation(val));
+        StartCoroutine(WaitForDelayBeforeCodeValidation(val));
     }
 
     public void ReceiveCodeChars(string val)
@@ -56,21 +59,23 @@ public class KeypadCodeValidator : MonoBehaviour
         }
     }
 
-    private IEnumerator waitForDelayBeforeCodeValidation(string val)
+    private IEnumerator WaitForDelayBeforeCodeValidation(string val)
     {
-        yield return new WaitForSeconds(_delayValue);
-
         if (val == UnlockCode)
         {
             //Door will open
             NotifyCodeAccepted?.Invoke();
+            yield return new WaitForSeconds(_delayValue);
+            NotifyAfterAccepted?.Invoke();
         }
         else if (val != UnlockCode)
         {
             NotifyCodeRejected?.Invoke();
+            yield return new WaitForSeconds(_delayValue);
+            NotifyAfterRejected?.Invoke();
+
             foreach (var image in _symbolImages)
             {
-                //
                 image.gameObject.SetActive(false);
             }
         }
