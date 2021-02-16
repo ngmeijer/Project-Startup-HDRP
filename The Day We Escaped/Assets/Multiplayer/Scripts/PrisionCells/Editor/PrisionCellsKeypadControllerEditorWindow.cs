@@ -28,7 +28,7 @@ public class PrisionCellsKeypadControllerEditorWindow : EditorWindow
 
     private void ConfigKeyPad()
     {
-        var buttons = keyPadGameObject.GetComponentsInChildren<InGameSimpleButtonBoltCallback>();
+        var buttons = keyPadGameObject.GetComponentsInChildren<InGameSimpleButtonBolt>();
 
         foreach (var button in buttons)
         {
