@@ -15,9 +15,13 @@ namespace SecuritySystemNS
 
         private float timer;
 
+        private void Start()
+        {
+            _camera.enabled = false;
+        }
+
         private void Update()
         {
-            //Meh, could also use a coroutine with delay for this, what do you want?
             timer += Time.deltaTime;
 
             if (timer >= _updateInterval)

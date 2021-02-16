@@ -170,6 +170,16 @@ namespace Enemy
         public void UpdateObservers()
         {
             Debug.Log("Player has been detected!");
+
+            switch (fov.AlertLevel)
+            {
+                case EnemyAlertLevel.Idle:
+                    break;
+                case EnemyAlertLevel.Suspicious:
+                    break;
+                case EnemyAlertLevel.Aware:
+                    break;
+            }
         }
     }
 }
