@@ -1,6 +1,6 @@
-﻿using System;
-using Bolt;
+﻿using Bolt;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace MainMenu
@@ -12,9 +12,12 @@ namespace MainMenu
         [SerializeField]
         private Button _button;
 
+        public UnityEvent notifyServerLoadingScene;
+        
         private void Awake()
         {
             _button = GetComponent<Button>();
+            _button.interactable = false;
         }
 
         public override void Attached()
@@ -23,21 +26,20 @@ namespace MainMenu
             {
                 state.PlayerType = playerType;
                 state.Enabled = 1;
+                _button.interactable = true;
             }
-            else
-            {
-                _button.interactable = false;
-            }
-            
+
             state.AddCallback("Enabled", delegate(IState pState, string pPath, ArrayIndices pIndices)
             {
                 if (state.Enabled == -1)
                 {
                     var colors = _button.colors;
-                    colors.disabledColor = Color.blue;
+                    //colors.disabledColor = Color.blue;
                     _button.colors = colors;
 
                     _button.interactable = false;
+
+                    notifyServerLoadingScene?.Invoke();
                 }
             });
         }

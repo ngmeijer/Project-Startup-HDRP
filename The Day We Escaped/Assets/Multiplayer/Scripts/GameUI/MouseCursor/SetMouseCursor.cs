@@ -22,7 +22,7 @@ public class SetMouseCursor : MonoBehaviour
             _mouseCursorUtils.SetOnHoverCursor();
         }
         
-        BoltLog.Info($"{this} on enter Cursor");
+        Debug.Log($"{this} on enter Cursor");
     }
 
     public void SetDefaultCursor()
@@ -32,6 +32,6 @@ public class SetMouseCursor : MonoBehaviour
             _mouseCursorUtils.SetDefaultCursor();
         }
         
-        BoltLog.Info($"{this} on exit Cursor");
+        Debug.Log($"{this} on exit Cursor");
     }
 }
