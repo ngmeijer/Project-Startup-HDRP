@@ -9,7 +9,7 @@ namespace SecuritySystemNS
         [SerializeField] private Camera _camera;
 
         [Header("Security Settings")]
-        [Range(0.001f, 2f)]
+        [Range(0.5f, 5f)]
         [SerializeField]
         private float _updateInterval = 1f;
 
