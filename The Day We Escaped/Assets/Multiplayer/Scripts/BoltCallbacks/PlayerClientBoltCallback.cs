@@ -3,7 +3,7 @@ using UnityEngine;
 
 
 [BoltGlobalBehaviour(BoltNetworkModes.Client, "Level Test", "MovementTestScene", "Nils - Level 1", "Victor - Level 1")]
-public class LevelTestClientCallback : LevelTestCallbackBase
+public class PlayerClientBoltCallback : PlayerBoltCallbackBase
 {
     /// <summary>
     /// After scene is loaded, creates the Client Player, this player type will be different from the server player
@@ -42,5 +42,10 @@ public class LevelTestClientCallback : LevelTestCallbackBase
         }
 
         var clientPlayer = InstantiatePlayerAtSpawnPoint(spawnPoint);
+    }
+
+    public override void Connected(BoltConnection connection)
+    {
+        
     }
 }
