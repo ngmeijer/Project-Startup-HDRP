@@ -11,16 +11,22 @@ public enum EnemyAlertLevel
     Aware,
 };
 
-public class FOVAdvanced : MonoBehaviour, ISubject
+public class FOVAdvanced : MonoBehaviour, ISubject, IObserverCB
 {
     private EnemyAlertLevel _alertLevel;
     private Camera _camera;
-    private List<Collider> _playersFound = new List<Collider>();
+    [SerializeField] private List<Collider> _playerColliders = new List<Collider>();
     private Light _light;
     private bool _foundTarget;
+    private Transform _target;
+    private int _checkIndex;
 
     private float _timer;
-    public List<IObserver> _observerList { get; }
+    private float _lightLevel;
+
+    private FindPlayersBoltCallback _findPlayersCB;
+
+    public List<IObserver> _observerList { get; } = new List<IObserver>();
 
     public EnemyAlertLevel AlertLevel { get; private set; }
 
@@ -46,13 +52,23 @@ public class FOVAdvanced : MonoBehaviour, ISubject
         }
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
         _light.range = _range;
         _light.intensity = _intensity;
         _camera.farClipPlane = _range;
 
-        findTargetsInScene();
+        yield return new WaitForEndOfFrame();
+
+        _findPlayersCB = FindObjectOfType<FindPlayersBoltCallback>();
+
+        while (_findPlayersCB == null)
+        {
+            yield return null;
+            _findPlayersCB = FindObjectOfType<FindPlayersBoltCallback>();
+        }
+
+        _findPlayersCB.AttachPlayerNetwork(this);
     }
 
     private void Update()
@@ -60,24 +76,14 @@ public class FOVAdvanced : MonoBehaviour, ISubject
         handleAlertState();
     }
 
-    private void findTargetsInScene()
-    {
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        foreach (GameObject player in players)
-        {
-            Collider col = player.GetComponent<Collider>();
-            _playersFound.Add(col);
-        }
-    }
-
     private bool isTargetInView()
     {
-        Transform target = null;
         Plane[] planes = GeometryUtility.CalculateFrustumPlanes(_camera);
 
-        foreach (Collider playerCollider in _playersFound)
+        _foundTarget = false;
+        foreach (Collider playerCollider in _playerColliders)
         {
-            target = playerCollider.transform;
+            _target = playerCollider.transform;
             if (GeometryUtility.TestPlanesAABB(planes, playerCollider.bounds))
             {
                 RaycastHit hit;
@@ -89,22 +95,18 @@ public class FOVAdvanced : MonoBehaviour, ISubject
                     }
                 }
             }
-            else
-            {
-                _foundTarget = false;
-            }
         }
 
-        if (target != null)
+        if (_target != null)
         {
-            if (Vector3.Distance(transform.position, target.position) <= _range)
+            if (Vector3.Distance(transform.position, _target.position) <= _range)
                 if (_foundTarget)
                 {
-                    Debug.DrawLine(transform.position, target.position, Color.red);
+                    Debug.DrawLine(transform.position, _target.position, Color.red);
                 }
                 else
                 {
-                    Debug.DrawLine(transform.position, target.position, Color.green);
+                    Debug.DrawLine(transform.position, _target.position, Color.green);
                 }
         }
 
@@ -113,9 +115,10 @@ public class FOVAdvanced : MonoBehaviour, ISubject
 
     private void handleAlertState()
     {
-        if (isTargetInView() == true)
+        if (isTargetInView())
         {
             _timer += Time.deltaTime;
+
             if (_timer < _dangerDelay)
             {
                 _alertLevel = EnemyAlertLevel.Suspicious;
@@ -127,6 +130,8 @@ public class FOVAdvanced : MonoBehaviour, ISubject
                 _alertLevel = EnemyAlertLevel.Aware;
                 _light.color = Color.red;
             }
+
+            NotifyObservers();
         }
         else
         {
@@ -164,148 +169,25 @@ public class FOVAdvanced : MonoBehaviour, ISubject
         Gizmos.DrawWireSphere(transform.position, _range);
     }
 
-    #region 
-
-    //private enum FOVDirection
-    //{
-    //    Horizontal,
-    //    Vertical,
-    //};
-
-    //[SerializeField] private FOVDirection FOVDir;
-
-    //[SerializeField] [Range(1, 50)] private int _amountOfRaysHorizontal;
-    //[SerializeField] [Range(2, 25)] private int _amountOfRaysVertical;
-
-    //private int usedAmountOfRays;
-
-    //[SerializeField] [Range(1, 20)] private float _viewZRange;
-    //[SerializeField] [Range(1, 100)] private float _fov;
-
-    //[SerializeField] [Range(-0.05f, 0.05f)] private float _scanSpeed;
-
-    //[SerializeField] private Mesh mesh;
-
-    //[SerializeField] private LayerMask _targetMask;
-    //[SerializeField] private LayerMask _obstacleMask;
-
-    //[SerializeField] private Camera cam;
-
-    //private float distanceBetweenRaysX;
-    //private float distanceBetweenRaysY;
-
-    //private float oldPosX;
-    //private float oldPosY;
-
-    //private Rect frustumSize;
-    //[SerializeField] private List<Vector3> directionsList = new List<Vector3>();
-    //public Vector3 direction = new Vector3();
-    //private float oldRotationY;
-
-    //private void Start()
-    //{
-    //    Vector3 topLeftFrustumPos = new Vector3();
-    //}
-
-    ////Only for testing & scene view. 
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.matrix = transform.localToWorldMatrix;
-
-    //    cam.farClipPlane = _viewZRange;
-    //    cam.fieldOfView = _fov;
-
-    //    float frustumHeight = 1.0f * _viewZRange * Mathf.Tan(cam.fieldOfView * 0.5f * Mathf.Deg2Rad);
-    //    float frustumWidth = frustumHeight * cam.aspect;
-
-    //    //Y-axis, TOP & BOTTOM
-    //    frustumSize.yMin = frustumHeight;
-    //    frustumSize.yMax = -frustumHeight;
-
-    //    //X-axis LEFT & RIGHT
-    //    frustumSize.xMin = -frustumWidth;
-    //    frustumSize.xMax = frustumWidth;
-
-    //    Gizmos.color = Color.red;
-
-    //    switch (FOVDir)
-    //    {
-    //        case FOVDirection.Horizontal:
-    //            oldPosX = -frustumWidth;
-    //            distanceBetweenRaysX = (frustumWidth * 2) / _amountOfRaysHorizontal;
-
-    //            oldPosY -= _scanSpeed;
-
-    //            for (int x = 0; x < _amountOfRaysHorizontal; x++)
-    //            {
-    //                oldPosX += distanceBetweenRaysX;
-    //                Vector3 directionVector3 = new Vector3(oldPosX, oldPosY, _viewZRange);
-    //                Gizmos.DrawLine(Vector3.zero, directionVector3);
-    //            }
-
-    //            if (oldPosY <= frustumSize.yMax || oldPosY >= frustumSize.yMin)
-    //                _scanSpeed *= -1;
-
-    //            Gizmos.DrawLine(Vector3.zero, new Vector3(-frustumWidth, oldPosY, _viewZRange));
-    //            Gizmos.DrawLine(Vector3.zero, new Vector3(frustumWidth, oldPosY, _viewZRange));
-    //            break;
-
-    //        case FOVDirection.Vertical:
-    //            oldPosY = -frustumHeight * 2;
-
-    //            distanceBetweenRaysY = (frustumHeight * 4) / _amountOfRaysVertical;
-
-    //            oldPosX -= _scanSpeed;
-
-    //            for (int y = 0; y < _amountOfRaysVertical; y++)
-    //            {
-    //                oldPosY += distanceBetweenRaysY;
-    //                Vector3 direction = new Vector3(oldPosY, oldPosY, _viewZRange);
-    //                Gizmos.DrawLine(Vector3.zero, direction);
-    //            }
+    public void ReceiveNetworkUpdate(List<GameObject> pPlayerList)
+    {
+        //do
+        //{
+        //    _findPlayersCB = FindObjectOfType<FindPlayersBoltCallback>();
+        //    yield return null;
+        //} while (_findPlayersCB == null);
 
 
-    //            if (oldPosX <= frustumSize.xMin || oldPosX >= frustumSize.xMax)
-    //                _scanSpeed *= -1;
+        //_findPlayersCB.AttachPlayerNetwork(this);
+        //List<GameObject> playersFound = _findPlayersCB.ReturnPlayerList();
 
-    //            Gizmos.DrawLine(Vector3.zero, new Vector3(oldPosX, frustumHeight * 2, _viewZRange));
-    //            Gizmos.DrawLine(Vector3.zero, new Vector3(oldPosX, -frustumHeight * 2, _viewZRange));
-    //            break;
-    //    }
-    //}
-
-    //private void Update()
-    //{
-    //    findVisibleTargets();
-    //}
-
-    //private void findVisibleTargets()
-    //{
-    //    float newRotationY = transform.rotation.y * Mathf.Rad2Deg;
-
-    //    float degreesMoved = newRotationY - oldRotationY;
-
-    //    float yPos = frustumSize.yMin;
-
-    //    Vector3 currentRotation = rotateAroundPoint(transform.position, direction, degreesMoved);
-
-    //    Debug.DrawRay(transform.position,  new Vector3(transform.localRotation.x, transform.localRotation.y, transform.localRotation.z) * 3, Color.cyan);
-
-    //    oldRotationY = transform.rotation.y * Mathf.Rad2Deg;
-
-    //    ////Find local position of a point on the frustum to find the correct position for a ray/line!
-    //    //Debug.DrawLine(transform.position, transform.localPosition + directionsList[0], Color.green);
-    //}
-
-    //private Vector3 rotateAroundPoint(Vector3 sun, Vector3 planet, float angle)
-    //{
-    //    angle *= Mathf.Deg2Rad;
-
-    //    float x = Mathf.Cos(angle) * (sun.x - planet.x) - Mathf.Sin(angle) * (sun.y - planet.y) + planet.x;
-    //    float y = Mathf.Sin(angle) * (sun.x - planet.x) - Mathf.Cos(angle) * (sun.y - planet.y) + planet.y;
-
-    //    return new Vector3(x, y);
-    //}
-
-    #endregion
+        foreach (var player in pPlayerList)
+        {
+            Collider col = player.GetComponent<Collider>();
+            if (!_playerColliders.Contains(col))
+            {
+                _playerColliders.Add(col);
+            }
+        }
+    }
 }

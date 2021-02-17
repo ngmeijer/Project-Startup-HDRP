@@ -14,7 +14,6 @@ public class SimpleStateServerBoltCallback : Bolt.GlobalEventListener
         if (simpleBehaviour == null)
         {
             throw new UnityException($"Entity received in {nameof(SimpleStateServerBoltCallback)} is NULL");
-            return;
         }
 
         simpleBehaviour.NextStateInServer();
