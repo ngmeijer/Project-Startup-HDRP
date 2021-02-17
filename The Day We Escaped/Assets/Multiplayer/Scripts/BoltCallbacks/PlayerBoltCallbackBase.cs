@@ -5,7 +5,7 @@ using UnityTemplateProjects.PlayerTDEW;
 /// <summary>
 /// Need refactor
 /// </summary>
-public class LevelTestCallbackBase : GlobalEventListener
+public class PlayerBoltCallbackBase : GlobalEventListener
 {
     //TODO: refactor everything
 

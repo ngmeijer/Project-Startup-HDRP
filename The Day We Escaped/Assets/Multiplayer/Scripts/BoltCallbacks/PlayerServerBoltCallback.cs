@@ -1,11 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Bolt;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityTemplateProjects.PlayerTDEW;
 
-[BoltGlobalBehaviour(BoltNetworkModes.Server, "Level Test", "MovementTestScene", "Nils - Level 1", "Victor - Level 1")]
-public class LevelTestServerCallback : LevelTestCallbackBase
+[BoltGlobalBehaviour(BoltNetworkModes.Server, "Level Test", "MovementTestScene", "Nils - Level 1", "Victor - Level 1", "Victor - Level 2")]
+public class PlayerServerBoltCallback : PlayerBoltCallbackBase
 {
     public override void SceneLoadRemoteDone(BoltConnection connection, IProtocolToken token)
     {

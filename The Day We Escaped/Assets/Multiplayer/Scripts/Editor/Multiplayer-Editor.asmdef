@@ -2,7 +2,8 @@
     "name": "Multiplayer-Editor",
     "references": [
         "GUID:f9bf50fc049098c499a774d6afd3d1c7",
-        "GUID:21c3fac9e13ff824f988d65525ea5cb0"
+        "GUID:21c3fac9e13ff824f988d65525ea5cb0",
+        "GUID:1826c0224c0d048b88112c79bbb0cd85"
     ],
     "includePlatforms": [],
     "excludePlatforms": [
