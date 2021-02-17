@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityTemplateProjects.PlayerTDEW;
 
-[BoltGlobalBehaviour(BoltNetworkModes.Server, "Level Test", "MovementTestScene", "Nils - Level 1", "Victor - Level 1")]
+[BoltGlobalBehaviour(BoltNetworkModes.Server, "Level Test", "MovementTestScene", "Nils - Level 1", "Victor - Level 1", "Victor - Level 2")]
 public class PlayerServerBoltCallback : PlayerBoltCallbackBase
 {
     public override void SceneLoadRemoteDone(BoltConnection connection, IProtocolToken token)
