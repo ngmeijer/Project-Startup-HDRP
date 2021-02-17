@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/samplescene.unity
+    guid: cbfe36cfddfde964d9dfce63a355d5dd
+  - enabled: 1
     path: Assets/Multiplayer/Scenes/MainMenu.unity
     guid: bf386f237babb3e428db5282a0214366
   - enabled: 1
@@ -29,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Multiplayer/Scenes/Tests/Test Door.unity
     guid: afe3ee96df78f2e43be7aab7d875ca74
+  - enabled: 1
+    path: Assets/Multiplayer/Scenes/Tests/Test Radio Pickup.unity
+    guid: f39dc064ec1216a48b42ffed746612f3
   m_configObjects: {}

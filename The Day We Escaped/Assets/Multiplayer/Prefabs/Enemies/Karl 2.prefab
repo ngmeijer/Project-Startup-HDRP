@@ -489,7 +489,6 @@ MonoBehaviour:
   minDistanceToNewPoint: 5
   maxDistanceToNewPoint: 20
   _patrolPointsParent: {fileID: 0}
-  _karlTransform: {fileID: 7467490044117808872}
 --- !u!114 &117728404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -502,7 +501,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6c38762de06db3419f1b9c534934c18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerColliders: []
   _dangerDelay: 0
   _range: 5
   _intensity: 20
