@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 125.82016, g: 155.89598, b: 206.33609, a: 1}
+  m_IndirectSpecularColor: {r: 125.8049, g: 155.91515, b: 206.413, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6101,6 +6101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6c38762de06db3419f1b9c534934c18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerColliders: []
   _dangerDelay: 1.5
   _range: 6
   _intensity: 20
@@ -15622,6 +15623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6c38762de06db3419f1b9c534934c18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerColliders: []
   _dangerDelay: 1
   _range: 6
   _intensity: 20

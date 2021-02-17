@@ -40,8 +40,6 @@ public class FOVAdvanced : MonoBehaviour, ISubject, IObserverCB
     private void Awake()
     {
         _camera = GetComponentInChildren<Camera>();
-        if (_camera == null)
-            this.gameObject.AddComponent<Camera>();
 
         _light = GetComponentInChildren<Light>();
         if (_light == null)

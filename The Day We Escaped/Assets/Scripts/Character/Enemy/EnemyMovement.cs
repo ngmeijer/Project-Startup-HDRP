@@ -44,7 +44,9 @@ namespace Enemy
             state.SetTransforms(state.EnemyTransform, this.transform);
 
             fov = GetComponent<FOVAdvanced>();
-            fov.Attach(this);
+
+            if (fov != null)
+                fov.Attach(this);
 
             agent = GetComponent<NavMeshAgent>();
             if (agent == null)
