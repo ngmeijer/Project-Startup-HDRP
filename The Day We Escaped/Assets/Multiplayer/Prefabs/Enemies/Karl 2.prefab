@@ -397,6 +397,7 @@ GameObject:
   - component: {fileID: 117728402}
   - component: {fileID: 117728403}
   - component: {fileID: 117728404}
+  - component: {fileID: 5709729771424606826}
   m_Layer: 11
   m_Name: Karl 2
   m_TagString: Untagged
@@ -488,6 +489,7 @@ MonoBehaviour:
   minDistanceToNewPoint: 5
   maxDistanceToNewPoint: 20
   _patrolPointsParent: {fileID: 0}
+  _karlTransform: {fileID: 7467490044117808872}
 --- !u!114 &117728404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -500,9 +502,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6c38762de06db3419f1b9c534934c18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerColliders: []
   _dangerDelay: 0
   _range: 5
   _intensity: 20
+--- !u!114 &5709729771424606826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2612484824915894076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -36112512, guid: 5b00bf8b25851d440940a40ec23344f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sceneGuid: 
+  _serializerGuid: 899a3449-aac7-4520-ae51-b2fd41603cf7
+  _prefabId: 4
+  _updateRate: 1
+  _autoFreezeProxyFrames: 0
+  _clientPredicted: 1
+  _allowInstantiateOnClient: 0
+  _persistThroughSceneLoads: 0
+  _sceneObjectDestroyOnDetach: 1
+  _sceneObjectAutoAttach: 1
+  _alwaysProxy: 0
+  _detachOnDisable: 1
+  _allowFirstReplicationWhenFrozen: 0
+  _autoRemoveChildEntities: 0
+  _entityBehaviourQueryOption: 0
+  _entityPriorityCalculatorQueryOption: 1
+  _entityReplicationFilterQueryOption: 1
 --- !u!1001 &6929742248415662339
 PrefabInstance:
   m_ObjectHideFlags: 0

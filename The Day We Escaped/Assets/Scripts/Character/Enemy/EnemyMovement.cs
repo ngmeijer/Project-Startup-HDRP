@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 namespace Enemy
 {
-    public class EnemyMovement : MonoBehaviour, IObserver
+    public class EnemyMovement : Bolt.EntityBehaviour<IEnemyState>, IObserver
     {
         private EnemyAlertLevel alertLevel;
         private NavMeshAgent agent;
@@ -13,7 +13,6 @@ namespace Enemy
         private Transform targetCandidate;
         private bool arrivedAtTarget;
         private float timer;
-
 
         [SerializeField]
         [Tooltip("How long should the NPC remain idle at the target point?")]
@@ -37,9 +36,13 @@ namespace Enemy
         private GameObject _patrolPointsParent;
 
         private FOVAdvanced fov;
+        [SerializeField] private Transform _karlTransform;
+        private bool _entityIsAttached;
 
-        private void Start()
+        public override void Attached()
         {
+            state.SetTransforms(state.EnemyTransform, this.transform);
+
             fov = GetComponent<FOVAdvanced>();
             fov.Attach(this);
 
@@ -50,14 +53,24 @@ namespace Enemy
                 agent = GetComponent<NavMeshAgent>();
             }
 
-            findPossibleWaypoints();
+            if (entity.IsOwner)
+            {
+                findPossibleWaypoints();
+                setNewDestination();
+            }
 
-            setNewDestination();
+            _entityIsAttached = true;
         }
 
         private void Update()
         {
-            //Choose random point from list of patrolPoints. Then based on which one was chosen, choose a new one after arriving on point, or after certain duration.
+            if (!_entityIsAttached)
+                return;
+
+            if (!BoltNetwork.IsServer)
+            {
+                return;
+            }
 
             if (checkIfArrived() && delayBeforeMoving != 0)
             {
@@ -170,6 +183,16 @@ namespace Enemy
         public void UpdateObservers()
         {
             Debug.Log("Player has been detected!");
+
+            switch (fov.AlertLevel)
+            {
+                case EnemyAlertLevel.Idle:
+                    break;
+                case EnemyAlertLevel.Suspicious:
+                    break;
+                case EnemyAlertLevel.Aware:
+                    break;
+            }
         }
     }
 }
