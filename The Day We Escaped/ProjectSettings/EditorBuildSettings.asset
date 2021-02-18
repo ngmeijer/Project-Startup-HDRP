@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Multiplayer/Scenes/Victor/Victor - Level 1.unity
     guid: 05198a72120bcaf49b8dd11cbb47d5d6
   - enabled: 1
-    path: Assets/Multiplayer/Scenes/Nils/Nils - Level 1.unity
+    path: Assets/Multiplayer/Scenes/Nils/Nils - Old scene.unity
     guid: b58994a2f7e273841917fc315d0af37d
   - enabled: 0
     path: Assets/Multiplayer/Scenes/MovementTestScene.unity
@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Multiplayer/Scenes/Tests/Test Radio Pickup.unity
     guid: f39dc064ec1216a48b42ffed746612f3
+  - enabled: 1
+    path: Assets/Scenes/samplescene.unity
+    guid: cbfe36cfddfde964d9dfce63a355d5dd
   m_configObjects: {}
