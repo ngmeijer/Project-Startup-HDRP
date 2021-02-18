@@ -44,8 +44,8 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 12500
-  m_Range: 20
+  m_Intensity: 10000
+  m_Range: 5.45
   m_SpotAngle: 152
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -113,10 +113,10 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
-  m_Intensity: 500
+  m_Intensity: 100
   m_EnableSpotReflector: 0
-  m_LuxAtDistance: 5
-  m_InnerSpotPercent: 0
+  m_LuxAtDistance: 10
+  m_InnerSpotPercent: 87.9
   m_LightDimmer: 1
   m_VolumetricDimmer: 16
   m_LightUnit: 2
@@ -248,8 +248,8 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 12500
-  m_Range: 20
+  m_Intensity: 10000
+  m_Range: 5.45
   m_SpotAngle: 152
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -317,10 +317,10 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
-  m_Intensity: 500
+  m_Intensity: 100
   m_EnableSpotReflector: 0
-  m_LuxAtDistance: 5
-  m_InnerSpotPercent: 0
+  m_LuxAtDistance: 10
+  m_InnerSpotPercent: 87.9
   m_LightDimmer: 1
   m_VolumetricDimmer: 16
   m_LightUnit: 2
@@ -452,8 +452,8 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 12500
-  m_Range: 20
+  m_Intensity: 10000
+  m_Range: 5.45
   m_SpotAngle: 152
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -521,10 +521,10 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
-  m_Intensity: 500
+  m_Intensity: 100
   m_EnableSpotReflector: 0
-  m_LuxAtDistance: 5
-  m_InnerSpotPercent: 0
+  m_LuxAtDistance: 10
+  m_InnerSpotPercent: 87.9
   m_LightDimmer: 1
   m_VolumetricDimmer: 16
   m_LightUnit: 2
@@ -624,7 +624,7 @@ GameObject:
   - component: {fileID: 8363840112897434462}
   - component: {fileID: 6050202425874896788}
   m_Layer: 0
-  m_Name: Lamp (3)
+  m_Name: Lamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
