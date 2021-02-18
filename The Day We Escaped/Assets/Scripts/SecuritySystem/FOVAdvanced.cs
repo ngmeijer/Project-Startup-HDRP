@@ -16,7 +16,7 @@ public class FOVAdvanced : MonoBehaviour, ISubject, IObserverCB
     private EnemyAlertLevel _alertLevel;
     private Camera _camera;
     [SerializeField] private List<Collider> _playerColliders = new List<Collider>();
-    private Light _light;
+    [SerializeField] private Light _light;
     private bool _foundTarget;
     private Transform _target;
 
@@ -41,19 +41,19 @@ public class FOVAdvanced : MonoBehaviour, ISubject, IObserverCB
         if (_camera == null)
             this.gameObject.AddComponent<Camera>();
 
-        _light = GetComponentInChildren<Light>();
-        if (_light == null)
-        {
-            Transform child = this.gameObject.transform.GetChild(0);
-            child.gameObject.AddComponent<Light>();
-            _light = GetComponentInChildren<Light>();
-        }
+        ////_light = GetComponentInChildren<Light>();
+        //if (_light == null)
+        //{
+        //    Transform child = this.gameObject.transform.GetChild(1);
+        //    child.gameObject.AddComponent<Light>();
+        //    _light = GetComponentInChildren<Light>();
+        //}
     }
 
     private IEnumerator Start()
     {
-        _light.range = _range;
-        _light.intensity = _intensity;
+        //_light.range = _range;
+        //_light.intensity = _intensity;
         if (_camera != null)
         {
             _camera.farClipPlane = _range;
@@ -136,7 +136,6 @@ public class FOVAdvanced : MonoBehaviour, ISubject, IObserverCB
         }
         else
         {
-            _light.color = Color.white;
             _alertLevel = EnemyAlertLevel.Idle;
             _light.color = Color.white;
             _timer = 0;

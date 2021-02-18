@@ -503,6 +503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerColliders: []
+  _light: {fileID: 0}
   _dangerDelay: 0
   _range: 5
   _intensity: 20
@@ -520,7 +521,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sceneGuid: 
   _serializerGuid: 899a3449-aac7-4520-ae51-b2fd41603cf7
-  _prefabId: 4
+  _prefabId: 5
   _updateRate: 1
   _autoFreezeProxyFrames: 0
   _clientPredicted: 1
