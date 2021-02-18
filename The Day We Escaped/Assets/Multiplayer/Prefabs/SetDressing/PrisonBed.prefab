@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 443826018950202626}
   - component: {fileID: 3568842107275004583}
   - component: {fileID: 1613385657173261933}
-  - component: {fileID: 8844588096037240995}
+  - component: {fileID: 6392230265777529794}
   m_Layer: 0
   m_Name: PrisonBed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &443826018950202626
 Transform:
@@ -80,8 +80,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &8844588096037240995
-MeshCollider:
+--- !u!65 &6392230265777529794
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -90,7 +90,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 3335724914305450694, guid: 0d3e2ae6d321e9b4eb31eeec8d841f4b, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 1.1, y: 0.81744343, z: 2.150009}
+  m_Center: {x: 0, y: 0, z: 0}

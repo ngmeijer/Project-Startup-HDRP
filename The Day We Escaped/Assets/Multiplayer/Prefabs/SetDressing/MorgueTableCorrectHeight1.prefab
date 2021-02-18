@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 5078250516266419102}
   - component: {fileID: 8202825569231834171}
   - component: {fileID: 6211234836978268401}
-  - component: {fileID: 3519910168915807384}
+  - component: {fileID: 5970284345404296565}
   m_Layer: 0
   m_Name: MorgueTableCorrectHeight1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5078250516266419102
 Transform:
@@ -80,8 +80,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &3519910168915807384
-MeshCollider:
+--- !u!65 &5970284345404296565
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -90,7 +90,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -4619786236174134555, guid: b85f02387babd874db83296d64671710, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 2.5678382, y: 0.9829283, z: 1.0111111}
+  m_Center: {x: 0, y: 0.000000014901161, z: 0}
