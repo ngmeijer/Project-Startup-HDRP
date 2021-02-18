@@ -103,7 +103,7 @@ namespace Enemy
 
             Transform newPoint = findNewTargetPoint();
 
-            while (checkNewTargetPointDistance(newPoint) == false)
+            if (checkNewTargetPointDistance(newPoint) == false)
             {
                 newPoint = findNewTargetPoint();
             }
