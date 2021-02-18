@@ -2,7 +2,10 @@
 using UnityEngine;
 
 
-[BoltGlobalBehaviour(BoltNetworkModes.Client, "Level Test", "MovementTestScene", "Nils - Level 1", "Victor - Level 1", "Victor - Level 2")]
+[BoltGlobalBehaviour(BoltNetworkModes.Client, "Level Test", "MovementTestScene", "Nils - Level 1",
+    "Victor - Level 1", 
+    "Victor - Level 2",
+    "Victor - Level 2 - ambient light")]
 public class PlayerClientBoltCallback : PlayerBoltCallbackBase
 {
     /// <summary>

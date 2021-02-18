@@ -12,7 +12,10 @@ EditorBuildSettings:
     path: Assets/Multiplayer/Scenes/MainMenu_ChoosePlayer.unity
     guid: 35a0a99cbae53564b9176aad7b3172e6
   - enabled: 1
-    path: Assets/Multiplayer/Scenes/Victor/Victor - Level 2.unity
+    path: Assets/Multiplayer/Scenes/Victor/Victor - Level 2 - ambient light.unity
+    guid: 0557b0a09774d4c438b29717ec551571
+  - enabled: 1
+    path: Assets/Multiplayer/Scenes/Victor/Victor - Level 2 new without lght.unity
     guid: ba4ff2da65c50004d97089683d000e31
   - enabled: 1
     path: Assets/Multiplayer/Scenes/Victor/Victor - Level 1.unity
