@@ -143,5 +143,11 @@ namespace UnityTemplateProjects.PlayerTDEW
             _yaw = rot.eulerAngles.y;
             _playerMovement.SetRotation(rot);
         }
+
+        public void SetEnableMoveAndLook(bool val)
+        {
+            AcceptLook = val;
+            AcceptMove = val;
+        }
     }
 }

@@ -15,7 +15,6 @@ public class InLevelEndStateController : Bolt.EntityBehaviour<ISimpleIntState>
     
     public UnityEvent notifyEndLevel;
     public UnityEvent notifyAfterEndLevelDelay;
-
     
     public override void Attached()
     {
@@ -55,5 +54,18 @@ public class InLevelEndStateController : Bolt.EntityBehaviour<ISimpleIntState>
     {
         state.StateNumber--;
         BoltLog.Warn($"Player to escape removed | total: {state.StateNumber}");
+    }
+
+    public void BlockPlayerMovement()
+    {
+        if (GeneralBoltCallback.CurrentPlayer != null)
+        {
+            GeneralBoltCallback.CurrentPlayer.SetEnableMoveAndLook(false);
+        }
+    }
+
+    public void QuitApplication()
+    {
+        Application.Quit();
     }
 }

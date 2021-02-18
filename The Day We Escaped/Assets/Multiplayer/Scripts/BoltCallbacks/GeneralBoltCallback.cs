@@ -11,6 +11,9 @@ public class GeneralBoltCallback : Bolt.GlobalEventListener
 {
    private Dictionary<BoltConnection, PlayerTDEWController> _playerMap;
 
+   private static PlayerTDEWController _currentPlayer;
+   public static PlayerTDEWController CurrentPlayer => _currentPlayer;
+
    private void Awake()
    {
       _playerMap = new Dictionary<BoltConnection, PlayerTDEWController>();
@@ -37,6 +40,11 @@ public class GeneralBoltCallback : Bolt.GlobalEventListener
          var player = entity.GetComponent<PlayerTDEWController>();
          if (player == null)
             return;
+
+         if (entity.IsOwner)
+         {
+            _currentPlayer = player;
+         }
       }
    }
 
