@@ -19,16 +19,10 @@ public class FOVAdvanced : MonoBehaviour, ISubject, IObserverCB
     private Light _light;
     private bool _foundTarget;
     private Transform _target;
-    private int _checkIndex;
 
     private float _timer;
-    private float _lightLevel;
 
     private FindPlayersBoltCallback _findPlayersCB;
-
-    public List<IObserver> _observerList { get; } = new List<IObserver>();
-
-    public EnemyAlertLevel AlertLevel { get; private set; }
 
     [Header("Security settings")]
     [SerializeField] [Range(0, 5)] private float _dangerDelay;
@@ -37,9 +31,13 @@ public class FOVAdvanced : MonoBehaviour, ISubject, IObserverCB
     [SerializeField] [Range(1, 20)] private float _range;
     [SerializeField] private float _intensity = 20f;
 
+    public List<IObserver> _observerList { get; } = new List<IObserver>();
+
+    public EnemyAlertLevel AlertLevel { get; private set; }
+
     private void Awake()
     {
-        _camera = GetComponentInChildren<Camera>();
+        _camera = GetComponentInChildren<Camera>(true);
         if (_camera == null)
             this.gameObject.AddComponent<Camera>();
 
@@ -56,7 +54,10 @@ public class FOVAdvanced : MonoBehaviour, ISubject, IObserverCB
     {
         _light.range = _range;
         _light.intensity = _intensity;
-        _camera.farClipPlane = _range;
+        if (_camera != null)
+        {
+            _camera.farClipPlane = _range;
+        }
 
         yield return new WaitForEndOfFrame();
 
@@ -163,24 +164,8 @@ public class FOVAdvanced : MonoBehaviour, ISubject, IObserverCB
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.white;
-        Gizmos.DrawWireSphere(transform.position, _range);
-    }
-
     public void ReceiveNetworkUpdate(List<GameObject> pPlayerList)
     {
-        //do
-        //{
-        //    _findPlayersCB = FindObjectOfType<FindPlayersBoltCallback>();
-        //    yield return null;
-        //} while (_findPlayersCB == null);
-
-
-        //_findPlayersCB.AttachPlayerNetwork(this);
-        //List<GameObject> playersFound = _findPlayersCB.ReturnPlayerList();
-
         foreach (var player in pPlayerList)
         {
             Collider col = player.GetComponent<Collider>();
@@ -189,5 +174,11 @@ public class FOVAdvanced : MonoBehaviour, ISubject, IObserverCB
                 _playerColliders.Add(col);
             }
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireSphere(transform.position, _range);
     }
 }
