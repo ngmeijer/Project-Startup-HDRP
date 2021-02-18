@@ -3,7 +3,62 @@ guid: 44b2a13a9d0671c47a55e53d75203ec1
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ceiling_cntroom
+    second: {fileID: 2100000, guid: 9191c1a93d4b164469a689884a2ed43c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ceiling_prison
+    second: {fileID: 2100000, guid: aae320dcaab717748a22f10719b30462, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ControllRoom_floor
+    second: {fileID: 2100000, guid: c6a7702e55683264f9686c81bbbc54a2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: General_floors
+    second: {fileID: 2100000, guid: 08595a658edc6624dae0a54db38dd193, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: General_walls
+    second: {fileID: 2100000, guid: 5f8a8b23532cee34c8bae037793f77f6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Morgue_CNTRoom_floor
+    second: {fileID: 2100000, guid: c6a7702e55683264f9686c81bbbc54a2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Morgue_CNTRoom_walls
+    second: {fileID: 2100000, guid: 6f624971736825c418b030d539b9d506, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Prison_floor
+    second: {fileID: 2100000, guid: 93250bbddb4d512479eff04de2029741, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: controllRoom_walls
+    second: {fileID: 2100000, guid: 6f624971736825c418b030d539b9d506, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: general_ceiling
+    second: {fileID: 2100000, guid: c398b0b21d2c3da46ad23d42e3bfee95, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: prison_Walls
+    second: {fileID: 2100000, guid: 1e21cb69df0e43f4fb1f49d621324832, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
