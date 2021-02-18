@@ -2,6 +2,7 @@
 using System.Linq;
 using Bolt;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityTemplateProjects.PlayerTDEW;
 
@@ -12,17 +13,36 @@ using UnityTemplateProjects.PlayerTDEW;
 /// </summary>
 public class InLevelEndStateController : Bolt.EntityBehaviour<IInLevelEndState>
 {
-    private List<PlayerTDEWController> _players;
-    private List<PlayerTDEWController> _playersAtEnd;
-    
-    public override void Attached() {
+    [SerializeField] private List<PlayerTDEWController> _players;
+    [SerializeField] private List<PlayerTDEWController> _playersAtEnd;
+
+    public UnityEvent notifyEndLevel;
+
+    public override void Attached()
+    {
+        _players = new List<PlayerTDEWController>();
+        _playersAtEnd = new List<PlayerTDEWController>();
         
         state.AddCallback("PlayersAtEnd[]", (pState, pPath, pIndices) => { CheckPlayerAtEndAndNotify(); });
     }
 
     private void CheckPlayerAtEndAndNotify()
     {
-        
+        foreach (var playerAtEnd in state.PlayersAtEnd)
+        {
+            if (playerAtEnd == null)
+                continue;
+
+            var player = playerAtEnd.GetComponent<PlayerTDEWController>();
+
+            if (!_playersAtEnd.Contains(player))
+                _playersAtEnd.Add(player);
+        }
+
+        if (_playersAtEnd.Count == _players.Count)
+        {
+            notifyEndLevel?.Invoke();
+        }
     }
 
     public void AddPlayer(PlayerTDEWController pPlayer)
