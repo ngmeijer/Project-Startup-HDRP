@@ -1,58 +1,59 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Bolt;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.EventSystems;
-using UnityTemplateProjects.PlayerTDEW;
 
 
 /// <summary>
 /// Run in both Server and Player
 /// States are in a SimpleIntState entity
 /// </summary>
-public class InLevelEndStateController : Bolt.EntityBehaviour<IInLevelEndState>
+public class InLevelEndStateController : Bolt.EntityBehaviour<ISimpleIntState>
 {
-    [SerializeField] private List<PlayerTDEWController> _players;
-    [SerializeField] private List<PlayerTDEWController> _playersAtEnd;
+    public int totalPlayerToEscape;
 
+    public float endLevelNotifyDelay;
+    
     public UnityEvent notifyEndLevel;
+    public UnityEvent notifyAfterEndLevelDelay;
 
+    
     public override void Attached()
     {
-        _players = new List<PlayerTDEWController>();
-        _playersAtEnd = new List<PlayerTDEWController>();
-        
-        state.AddCallback("PlayersAtEnd[]", (pState, pPath, pIndices) => { CheckPlayerAtEndAndNotify(); });
+        state.AddCallback("StateNumber", () =>
+        {
+            BoltLog.Warn($"Player to escape set | total: {state.StateNumber}");
+            CheckPlayerAtEnd();
+        });
     }
 
-    private void CheckPlayerAtEndAndNotify()
+    private void CheckPlayerAtEnd()
     {
-        foreach (var playerAtEnd in state.PlayersAtEnd)
+        if (state.StateNumber >= totalPlayerToEscape)
         {
-            if (playerAtEnd == null)
-                continue;
-
-            var player = playerAtEnd.GetComponent<PlayerTDEWController>();
-
-            if (!_playersAtEnd.Contains(player))
-                _playersAtEnd.Add(player);
-        }
-
-        if (_playersAtEnd.Count == _players.Count)
-        {
+            BoltLog.Warn($"Players Escaped");
+            
+            StartCoroutine(NotifyEndLevelDelay());
             notifyEndLevel?.Invoke();
         }
     }
 
-    public void AddPlayer(PlayerTDEWController pPlayer)
+    private IEnumerator NotifyEndLevelDelay()
     {
-        if (!_players.Contains(pPlayer))
-            _players.Add(pPlayer);
+        yield return new WaitForSeconds(endLevelNotifyDelay);
+        
+        notifyAfterEndLevelDelay?.Invoke();
+
     }
 
-    public void Remove(PlayerTDEWController pPlayer)
+    public void AddPlayerCountInServer()
     {
-        _players.Remove(pPlayer);
+        state.StateNumber++;
+        BoltLog.Warn($"Player to escape added | total: {state.StateNumber}");
+    }
+
+    public void RemovePlayerCountInServer()
+    {
+        state.StateNumber--;
+        BoltLog.Warn($"Player to escape removed | total: {state.StateNumber}");
     }
 }

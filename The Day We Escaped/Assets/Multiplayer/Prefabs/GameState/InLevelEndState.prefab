@@ -73,3 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6822461de8474ae4902b3131b8003ec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  totalPlayerToEscape: 0
+  notifyEndLevel:
+    m_PersistentCalls:
+      m_Calls: []
