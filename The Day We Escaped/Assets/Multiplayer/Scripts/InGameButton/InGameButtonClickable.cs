@@ -12,6 +12,7 @@ public class InGameButtonClickable : MonoBehaviour, IPointerClickHandler, IPoint
     private bool _waitLockDuration;
     
     public PointerEventDataUnityEvent notifyOnClick;
+    
     [Header("OnHover Events")] public UnityEvent notifyOnEnter;
     public UnityEvent notifyOnExit;
 

@@ -37,6 +37,7 @@ public class SimpleIntStateBehaviour : Bolt.EntityEventListener<ISimpleIntState>
             if (!entity.IsOwner) 
                 return;
             
+            //Only runs in the owner/server
             //this switch was created by Jetbrains Rider's code hint
             switch (onStateChangedInServer.Length > 0)
             {
