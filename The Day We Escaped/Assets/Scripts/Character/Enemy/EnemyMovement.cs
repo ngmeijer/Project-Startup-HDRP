@@ -53,7 +53,7 @@ namespace Enemy
                 agent = GetComponent<NavMeshAgent>();
             }
 
-            if (entity.IsOwner)
+            if (entity.IsOwner && _patrolPointsParent != null)
             {
                 findPossibleWaypoints();
                 setNewDestination();
@@ -67,7 +67,7 @@ namespace Enemy
             if (!_entityIsAttached)
                 return;
 
-            if (!BoltNetwork.IsServer)
+            if (!BoltNetwork.IsServer || _patrolPointsParent == null)
             {
                 return;
             }
