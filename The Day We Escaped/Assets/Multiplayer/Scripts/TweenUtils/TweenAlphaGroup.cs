@@ -12,6 +12,7 @@ public class TweenAlphaGroup : MonoBehaviour
     public float duration = 0.4f;
     public float delay = 0;
     public bool playOnStart = false;
+    public bool forceBeforeDelay;
     public Tween.LoopType loopType = Tween.LoopType.None;
     public AnimationCurve easing = Tween.EaseInOut;
     public UnityEvent startCallback;
@@ -36,6 +37,11 @@ public class TweenAlphaGroup : MonoBehaviour
     {
         if (forceFrom)
         {
+            if (forceBeforeDelay)
+            {
+                target.alpha = fromAlpha;
+            }
+
             _tween = Tween.CanvasGroupAlpha(target, fromAlpha, toAlpha, duration, delay, easing,
                 loopType, delegate { startCallback?.Invoke(); }, delegate { completeCallback?.Invoke(); });
         }
@@ -50,6 +56,11 @@ public class TweenAlphaGroup : MonoBehaviour
     {
         if (forceFrom)
         {
+            if (forceBeforeDelay)
+            {
+                target.alpha = toAlpha;
+            }
+            
             _tween = Tween.CanvasGroupAlpha(target, toAlpha, fromAlpha, duration, delay, easing,
                 loopType, delegate { startCallback?.Invoke(); }, delegate { completeCallback?.Invoke(); });
         }

@@ -4196,6 +4196,7 @@ MonoBehaviour:
   duration: 2
   delay: 0
   playOnStart: 1
+  forceBeforeDelay: 0
   loopType: 0
   easing:
     serializedVersion: 2
