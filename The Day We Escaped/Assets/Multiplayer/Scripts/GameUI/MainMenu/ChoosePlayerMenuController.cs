@@ -3,13 +3,14 @@ using System.Collections;
 using Bolt.Matchmaking;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace MainMenu
 {
     public class ChoosePlayerMenuController : MonoBehaviour
     {
-        public string sceneName;
+        public int sceneIndex;
 
         [SerializeField] private Text _text;
 
@@ -48,8 +49,10 @@ namespace MainMenu
                 intVal = serverPlayerType
             };
 
+            var scene = SceneManager.GetSceneByBuildIndex(sceneIndex);
+            
             //Load sceneName and sends the token with the player type
-            BoltNetwork.LoadScene(sceneName, serverPlayerToken);
+            BoltNetwork.LoadScene(scene.name, serverPlayerToken);
         }
     }
 }

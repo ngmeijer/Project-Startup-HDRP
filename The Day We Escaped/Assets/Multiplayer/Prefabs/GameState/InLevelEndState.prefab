@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sceneGuid: 
   _serializerGuid: 4a824c45-de0b-48f6-9e60-1d29cedd3d5b
-  _prefabId: 5
+  _prefabId: 6
   _updateRate: 1
   _autoFreezeProxyFrames: 0
   _clientPredicted: 1
@@ -74,6 +74,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalPlayerToEscape: 0
+  endLevelNotifyDelay: 0
   notifyEndLevel:
+    m_PersistentCalls:
+      m_Calls: []
+  notifyAfterEndLevelDelay:
     m_PersistentCalls:
       m_Calls: []
