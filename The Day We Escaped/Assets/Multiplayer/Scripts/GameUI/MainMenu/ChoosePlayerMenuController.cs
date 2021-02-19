@@ -63,8 +63,6 @@ namespace MainMenu
             string name = path.Substring(slash + 1);
             int dot = name.LastIndexOf('.');
             return name.Substring(0, dot);
-
-            Tween.Value(0, 1,delegate(float f) {  },  );
         }
     }
 }
