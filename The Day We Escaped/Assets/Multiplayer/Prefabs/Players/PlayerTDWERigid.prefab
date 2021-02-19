@@ -31,8 +31,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb3c3f9a90636be4681e94ca00df721c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minPitch: 0.9
-  maxPitch: 1.1
+  minPitch: 0.94
+  maxPitch: 1.06
   _audioSources:
   - {fileID: 672158643273223744}
   - {fileID: 6560243321986226642}
