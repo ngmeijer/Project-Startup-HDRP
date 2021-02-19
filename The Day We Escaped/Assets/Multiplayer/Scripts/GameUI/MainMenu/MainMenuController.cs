@@ -18,6 +18,7 @@ namespace MainMenu
         public UnityEvent notifyStarting;
         public UnityEvent notifyServerStarting;
         public UnityEvent notifyClientStarting;
+        public UnityEvent notifyClientConnectToSession;
         public StringUnityEvent notifyBoltStartFailed;
         public UnityEvent notifyApplicationQuitting;
         
@@ -122,6 +123,11 @@ namespace MainMenu
             
             var errorEnum = disconnectReason.ToString();
             notifyBoltStartFailed?.Invoke(msg);
+        }
+
+        public override void SessionConnected(UdpSession session, IProtocolToken token)
+        {
+            notifyClientConnectToSession?.Invoke();
         }
 
         public override void SessionConnectFailed(UdpSession session, IProtocolToken token, UdpSessionError errorReason)
