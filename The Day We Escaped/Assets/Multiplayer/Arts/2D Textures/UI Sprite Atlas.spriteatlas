@@ -35,46 +35,16 @@ SpriteAtlas:
       m_ForceMaximumCompressionQuality_BC6H_BC7: 0
     packingSettings:
       serializedVersion: 2
-      padding: 4
+      padding: 8
       blockOffset: 1
       allowAlphaSplitting: 0
-      enableRotation: 1
-      enableTightPacking: 1
+      enableRotation: 0
+      enableTightPacking: 0
     variantMultiplier: 1
-    packables:
-    - {fileID: 2800000, guid: eddc37d3fb2a13c4f8258e6701196f47, type: 3}
-    - {fileID: 2800000, guid: 014a88bf5619d60418087fb0d18a8f69, type: 3}
-    - {fileID: 2800000, guid: 0907167e507282c42a8ebd6c0ce7cfb1, type: 3}
-    - {fileID: 2800000, guid: f804395cc4b605641b55a0b1ebaa2144, type: 3}
-    - {fileID: 2800000, guid: 109aa9ae1335f2149aaa96eca3f5d5b5, type: 3}
-    - {fileID: 2800000, guid: a51e28b32235f4b4eb4926e0538d4b59, type: 3}
-    - {fileID: 2800000, guid: 3a51528b5dfa2a74aad6bace3f200253, type: 3}
-    - {fileID: 2800000, guid: da77166f48a72a84f90a0179de048543, type: 3}
-    - {fileID: 2800000, guid: f34007469ca58c0469bc91b53e6e81ea, type: 3}
-    - {fileID: 2800000, guid: a35763f1a54190f439510d7a33760bb4, type: 3}
+    packables: []
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
-  m_PackedSprites:
-  - {fileID: 21300000, guid: a35763f1a54190f439510d7a33760bb4, type: 3}
-  - {fileID: 21300000, guid: a51e28b32235f4b4eb4926e0538d4b59, type: 3}
-  - {fileID: 21300000, guid: eddc37d3fb2a13c4f8258e6701196f47, type: 3}
-  - {fileID: 21300000, guid: f34007469ca58c0469bc91b53e6e81ea, type: 3}
-  - {fileID: 21300000, guid: 3a51528b5dfa2a74aad6bace3f200253, type: 3}
-  - {fileID: 21300000, guid: f804395cc4b605641b55a0b1ebaa2144, type: 3}
-  - {fileID: 21300000, guid: 0907167e507282c42a8ebd6c0ce7cfb1, type: 3}
-  - {fileID: 21300000, guid: 109aa9ae1335f2149aaa96eca3f5d5b5, type: 3}
-  - {fileID: 21300000, guid: da77166f48a72a84f90a0179de048543, type: 3}
-  - {fileID: 21300000, guid: 014a88bf5619d60418087fb0d18a8f69, type: 3}
-  m_PackedSpriteNamesToIndex:
-  - RedStripe
-  - JoinServer
-  - White Dot 8x8
-  - Quit
-  - Player1
-  - ChooseYourPath
-  - game ending
-  - HostServer
-  - Player2
-  - mouse-hover-sprite-19_png
+  m_PackedSprites: []
+  m_PackedSpriteNamesToIndex: []
   m_Tag: UI Sprite Atlas
   m_IsVariant: 0

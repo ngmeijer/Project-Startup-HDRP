@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using Bolt.Matchmaking;
+using Pixelplacement;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -49,10 +50,21 @@ namespace MainMenu
                 intVal = serverPlayerType
             };
 
-            var scene = SceneManager.GetSceneByBuildIndex(sceneIndex);
-            
+            var scene = NameFromIndex(sceneIndex);
+
             //Load sceneName and sends the token with the player type
-            BoltNetwork.LoadScene(scene.name, serverPlayerToken);
+            BoltNetwork.LoadScene(scene, serverPlayerToken);
+        }
+        
+        private static string NameFromIndex(int BuildIndex)
+        {
+            string path = SceneUtility.GetScenePathByBuildIndex(BuildIndex);
+            int slash = path.LastIndexOf('/');
+            string name = path.Substring(slash + 1);
+            int dot = name.LastIndexOf('.');
+            return name.Substring(0, dot);
+
+            Tween.Value(0, 1,delegate(float f) {  },  );
         }
     }
 }
