@@ -8,26 +8,26 @@ namespace Enemy
     public class EnemyMovement : Bolt.EntityBehaviour<IEnemyState>, IObserver
     {
         private EnemyAlertLevel alertLevel;
-        private NavMeshAgent agent;
-        private Transform currentTarget;
-        private Transform targetCandidate;
-        private bool arrivedAtTarget;
-        private float timer;
+        private NavMeshAgent _agent;
+        private Transform _currentTarget;
+        private Transform _targetCandidate;
+        private bool _arrivedAtTarget;
+        private float _timer;
 
         [SerializeField]
         [Tooltip("How long should the NPC remain idle at the target point?")]
         [Range(0, 30)]
-        private float delayBeforeMoving;
+        private float _delayBeforeMoving;
 
         [SerializeField]
         [Tooltip("The NPC will not be able to go to a point that's within this range.")]
         [Range(0, 20)]
-        private float minDistanceToNewPoint = 5f;
+        private float _minDistanceToNewPoint = 5f;
 
         [SerializeField]
         [Tooltip("The NPC will not be able to go to a point that's outside this range.")]
         [Range(0, 30)]
-        private float maxDistanceToNewPoint = 5f;
+        private float _maxDistanceToNewPoint = 15f;
 
         private List<Transform> _patrolPoints = new List<Transform>();
 
@@ -35,22 +35,22 @@ namespace Enemy
         [Tooltip("The parent of the patrol points the NPC can go to.")]
         private GameObject _patrolPointsParent;
 
-        private FOVAdvanced fov;
-        [SerializeField] private Transform _karlTransform;
+        private FOVAdvanced _fov;
+        [SerializeField] private Transform _meshTransform;
         private bool _entityIsAttached;
 
         public override void Attached()
         {
             state.SetTransforms(state.EnemyTransform, this.transform);
 
-            fov = GetComponent<FOVAdvanced>();
-            fov.Attach(this);
+            _fov = GetComponent<FOVAdvanced>();
+            _fov.Attach(this);
 
-            agent = GetComponent<NavMeshAgent>();
-            if (agent == null)
+            _agent = GetComponent<NavMeshAgent>();
+            if (_agent == null)
             {
                 this.gameObject.AddComponent<NavMeshAgent>();
-                agent = GetComponent<NavMeshAgent>();
+                _agent = GetComponent<NavMeshAgent>();
             }
 
             if (entity.IsOwner && _patrolPointsParent != null)
@@ -72,18 +72,18 @@ namespace Enemy
                 return;
             }
 
-            if (checkIfArrived() && delayBeforeMoving != 0)
+            if (checkIfArrived() && _delayBeforeMoving != 0)
             {
-                timer += Time.deltaTime;
+                _timer += Time.deltaTime;
             }
 
-            if (timer >= delayBeforeMoving && checkIfArrived())
+            if (_timer >= _delayBeforeMoving && checkIfArrived())
             {
                 setNewDestination();
-                timer = 0;
+                _timer = 0;
             }
 
-            Debug.DrawLine(transform.position, currentTarget.position);
+            Debug.DrawLine(transform.position, _currentTarget.position);
         }
 
         private void findPossibleWaypoints()
@@ -99,7 +99,7 @@ namespace Enemy
 
         private void setNewDestination()
         {
-            arrivedAtTarget = false;
+            _arrivedAtTarget = false;
 
             Transform newPoint = findNewTargetPoint();
 
@@ -108,7 +108,7 @@ namespace Enemy
                 newPoint = findNewTargetPoint();
             }
 
-            agent.SetDestination(newPoint.position);
+            _agent.SetDestination(newPoint.position);
         }
 
         private Transform findNewTargetPoint()
@@ -117,7 +117,7 @@ namespace Enemy
 
             Transform newTarget = _patrolPoints[index];
 
-            currentTarget = newTarget;
+            _currentTarget = newTarget;
 
             return newTarget;
         }
@@ -125,15 +125,15 @@ namespace Enemy
         private bool checkNewTargetPointDistance(Transform newTarget)
         {
             bool withinGivenRanges = false;
-            targetCandidate = newTarget;
+            _targetCandidate = newTarget;
             float distance = Vector3.Distance(transform.position, newTarget.position);
 
-            if (distance >= minDistanceToNewPoint && distance <= maxDistanceToNewPoint)
+            if (distance >= _minDistanceToNewPoint && distance <= _maxDistanceToNewPoint)
             {
                 withinGivenRanges = true;
             }
 
-            if (distance < minDistanceToNewPoint || distance > maxDistanceToNewPoint)
+            if (distance < _minDistanceToNewPoint || distance > _maxDistanceToNewPoint)
             {
                 findNewTargetPoint();
                 withinGivenRanges = false;
@@ -146,7 +146,7 @@ namespace Enemy
         {
             bool arrived = false;
 
-            float distance = Vector3.Distance(transform.position, currentTarget.position);
+            float distance = Vector3.Distance(transform.position, _currentTarget.position);
 
             if (distance < 0.5f)
             {
@@ -159,19 +159,19 @@ namespace Enemy
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, minDistanceToNewPoint);
+            Gizmos.DrawWireSphere(transform.position, _minDistanceToNewPoint);
 
             Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(transform.position, maxDistanceToNewPoint);
+            Gizmos.DrawWireSphere(transform.position, _maxDistanceToNewPoint);
 
-            if (targetCandidate != null)
+            if (_targetCandidate != null)
             {
                 Gizmos.color = Color.magenta;
-                Gizmos.DrawSphere(targetCandidate.position, 0.8f);
+                Gizmos.DrawSphere(_targetCandidate.position, 0.8f);
 
                 foreach (Transform target in _patrolPoints)
                 {
-                    if (target != targetCandidate)
+                    if (target != _targetCandidate)
                     {
                         Gizmos.color = Color.grey;
                         Gizmos.DrawSphere(target.position, 0.5f);
@@ -184,7 +184,7 @@ namespace Enemy
         {
             Debug.Log("Player has been detected!");
 
-            switch (fov.AlertLevel)
+            switch (_fov.AlertLevel)
             {
                 case EnemyAlertLevel.Idle:
                     break;

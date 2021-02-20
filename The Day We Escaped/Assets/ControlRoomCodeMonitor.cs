@@ -25,16 +25,21 @@ namespace SecuritySystemNS
 
             if (_timer >= _switchInterval)
             {
-                currentImageIndex++;
-
-                if (currentImageIndex > _iconSpriteList.Count - 1)
-                {
-                    currentImageIndex = 0;
-                }
-
-                _timer = 0;
-                _monitorImage.sprite = _iconSpriteList[currentImageIndex];
+                updateMonitorImage();
             }
+        }
+
+        private void updateMonitorImage()
+        {
+            currentImageIndex++;
+
+            if (currentImageIndex > _iconSpriteList.Count - 1)
+            {
+                currentImageIndex = 0;
+            }
+
+            _timer = 0;
+            _monitorImage.sprite = _iconSpriteList[currentImageIndex];
         }
     }
 }
