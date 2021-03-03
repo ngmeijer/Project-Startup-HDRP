@@ -47,11 +47,11 @@ MonoBehaviour:
   debugClientCount: 1
   debugStartPort: 50538
   debugBuildMode: 1
-  debugStartMapName: Victor - Level 2
+  debugStartMapName: MainMenu
   debugPlayAsServer: 1
   showDebugInfo: 0
   overrideTimeScale: 1
-  debugEditorMode: 1
+  debugEditorMode: 0
   consoleToggleKey: 9
   consoleVisibleByDefault: 0
   compilationWarnLevel: 4
