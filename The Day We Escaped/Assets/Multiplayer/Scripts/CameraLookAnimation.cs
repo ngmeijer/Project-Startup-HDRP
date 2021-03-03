@@ -15,6 +15,10 @@ public class CameraLookAnimation : MonoBehaviour
     public UnityEvent notifyOnStart;
     public UnityEvent notifyOnComplete;
     
+    public UnityEvent notifyOnStartReverse;
+    public UnityEvent notifyOnCompleteReverse;
+
+    
     private void Start()
     {
         if (playOnStart)
@@ -23,7 +27,13 @@ public class CameraLookAnimation : MonoBehaviour
 
     public void Play()
     {
-        Tween.Value(0, 1, delegate(float value) { _spline.followers[0].percentage = value; }, _transitionTime, 0,
+        Tween.Value(_spline.followers[0].percentage, 1, delegate(float value) { _spline.followers[0].percentage = value; }, _transitionTime, 0,
             Tween.EaseInOut, Tween.LoopType.None, delegate { notifyOnStart?.Invoke(); }, delegate { notifyOnComplete?.Invoke(); });
+    }
+    
+    public void PlayReverse()
+    {
+        Tween.Value(_spline.followers[0].percentage, 0, delegate(float value) { _spline.followers[0].percentage = value; }, _transitionTime, 0,
+            Tween.EaseInOut, Tween.LoopType.None, delegate { notifyOnStartReverse?.Invoke(); }, delegate { notifyOnCompleteReverse?.Invoke(); });
     }
 }

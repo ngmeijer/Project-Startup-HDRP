@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace MainMenu
+namespace Multiplayer.Scripts.GameUI.MainMenu
 {
     public class ChoosePlayerButtonBehaviour : Bolt.EntityEventListener<IChoosePlayerMenuState>
     {

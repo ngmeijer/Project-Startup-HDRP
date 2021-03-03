@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 namespace Enemy
 {
@@ -73,7 +74,7 @@ namespace Enemy
                 return;
             }
 
-            if (checkIfArrived() && delayBeforeMoving != 0)
+            if (checkIfArrivedAtTarget() && delayBeforeMoving != 0)
             {
                 timer += Time.deltaTime;
             }
@@ -86,7 +87,7 @@ namespace Enemy
 
             Debug.DrawLine(transform.position, currentTarget.position);
         }
-
+        
         private void findPossibleWaypoints()
         {
             //Only executed at start.
@@ -99,6 +100,8 @@ namespace Enemy
             }
         }
 
+        
+        
         private void setNewDestination()
         {
             arrivedAtTarget = false;

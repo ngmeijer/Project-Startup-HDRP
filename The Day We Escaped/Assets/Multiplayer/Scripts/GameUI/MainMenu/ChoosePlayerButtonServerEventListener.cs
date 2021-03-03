@@ -1,18 +1,19 @@
-﻿using MainMenu;
-using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine;
 
-[BoltGlobalBehaviour(BoltNetworkModes.Server, "MainMenu_ChoosePlayer")]
-public class ChoosePlayerButtonServerEventListener : Bolt.GlobalEventListener
+namespace Multiplayer.Scripts.GameUI.MainMenu
 {
-    public override void OnEvent(ChoosePlayerBoltEvent evnt)
+    [BoltGlobalBehaviour(BoltNetworkModes.Server, "MainMenu_ChoosePlayer")]
+    public class ChoosePlayerButtonServerEventListener : Bolt.GlobalEventListener
     {
-        BoltLog.Info($"{this.name}: receive event from {evnt.Entity}" );
+        public override void OnEvent(ChoosePlayerBoltEvent evnt)
+        {
+            BoltLog.Info($"{this.name}: receive event from {evnt.Entity}" );
 
-        var chooseState = evnt.Entity.GetState<IChoosePlayerMenuState>();
-        chooseState.Enabled = -1;
-        var playerType = chooseState.PlayerType;
+            var chooseState = evnt.Entity.GetState<IChoosePlayerMenuState>();
+            chooseState.Enabled = -1;
+            var playerType = chooseState.PlayerType;
         
-        GameObject.FindObjectOfType<ChoosePlayerMenuController>().LoadPlayerScene(playerType);
+            GameObject.FindObjectOfType<ServerChoosePlayerMenuController>().LoadPlayerScene(playerType);
+        }
     }
 }

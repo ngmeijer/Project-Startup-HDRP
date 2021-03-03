@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections;
-using Bolt.Matchmaking;
-using Pixelplacement;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace MainMenu
+namespace Multiplayer.Scripts.GameUI.MainMenu
 {
-    public class ChoosePlayerMenuController : MonoBehaviour
+    public class ServerChoosePlayerMenuController : MonoBehaviour
     {
         public int sceneIndex;
 

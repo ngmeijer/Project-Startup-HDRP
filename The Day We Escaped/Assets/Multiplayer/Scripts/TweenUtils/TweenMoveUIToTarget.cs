@@ -39,10 +39,10 @@ public class TweenMoveUIToTarget : MonoBehaviour
             return;
         }
 
-        var fromPosition = target.anchoredPosition;
-        var toPosition =  toTarget.anchoredPosition;
+        var fromPosition = target.position;
+        var toPosition =  toTarget.position;
         
-        _tween = Tween.AnchoredPosition(target, fromPosition, toPosition, duration, delay, easing,
+        _tween = Tween.Position(target, fromPosition, toPosition, duration, delay, easing,
             loopType,
             delegate { startCallback?.Invoke(); }, delegate { completeCallback?.Invoke(); });
     }
@@ -55,10 +55,10 @@ public class TweenMoveUIToTarget : MonoBehaviour
             return;
         }
 
-        var fromPosition = target.anchoredPosition;
-        var toPosition =  toTarget.anchoredPosition;
+        var fromPosition = target.position;
+        var toPosition =  toTarget.position;
 
-        _tween = Tween.AnchoredPosition(target, toPosition, fromPosition, duration, delay,
+        _tween = Tween.Position(target, toPosition, fromPosition, duration, delay,
             easing,
             loopType,
             delegate { startReverseCallback?.Invoke(); }, delegate { completeReverseCallback?.Invoke(); });
@@ -78,5 +78,10 @@ public class TweenMoveUIToTarget : MonoBehaviour
     private void OnEnable()
     {
         Play();
+    }
+
+    public void SetToTarget(GameObject g)
+    {
+        toTarget = g.GetComponent<RectTransform>();
     }
 }

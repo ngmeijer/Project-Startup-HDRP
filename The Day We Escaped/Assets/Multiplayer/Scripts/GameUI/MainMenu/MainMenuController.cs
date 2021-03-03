@@ -3,15 +3,13 @@ using System.Collections;
 using System.Linq;
 using Bolt;
 using Bolt.Matchmaking;
-using Bolt.Utils;
 using UdpKit;
 using UdpKit.Platform;
 using UdpKit.Platform.Photon;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 
-namespace MainMenu
+namespace Multiplayer.Scripts.GameUI.MainMenu
 {
     public class MainMenuController : Bolt.GlobalEventListener
     {
@@ -19,8 +17,14 @@ namespace MainMenu
         [SerializeField] private string _gameLevel;
 
         public UnityEvent notifyStarting;
+        
+        [Header("Server Start Notify")]
         public UnityEvent notifyServerStarting;
+        public UnityEvent notifyServerStarted;
+        
+        [Header("Client Start Notify")]
         public UnityEvent notifyClientStarting;
+        public UnityEvent notifyClientStarted;
         public UnityEvent notifyClientConnectToSession;
         public StringUnityEvent notifyBoltStartFailed;
         public UnityEvent notifyApplicationQuitting;
@@ -92,56 +96,11 @@ namespace MainMenu
 
                 BoltMatchmaking.CreateSession(matchName, null, null);
 
-                // BoltMatchmaking.CreateSession(
-                //     sessionID: matchName,
-                //     sceneToLoad: _gameLevel
-                //  );
+                notifyServerStarted?.Invoke();
             }
             else if (BoltNetwork.IsClient)
             {
-                //BoltMatchmaking.JoinRandomSession();
-            }
-        }
-
-        private void Update()
-        {
-            if (BoltNetwork.IsRunning && BoltNetwork.IsClient)
-            {
-                foreach (var session in BoltNetwork.SessionList)
-                {
-                    // Simple session
-                    UdpSession udpSession = session.Value as UdpSession;
-
-                    // Skip if is not a Photon session
-                    if (udpSession.Source != UdpSessionSource.Photon)
-                        continue;
-
-                    // Photon Session
-                    PhotonSession photonSession = udpSession as PhotonSession;
-
-                    string sessionDescription = String.Format("{0} / {1} ({2})",
-                        photonSession.Source, photonSession.HostName, photonSession.Id);
-
-
-                    object value_t = -1;
-                    object value_m = -1;
-
-                    if (photonSession.Properties.ContainsKey("t"))
-                    {
-                        value_t = photonSession.Properties["t"];
-                    }
-
-                    if (photonSession.Properties.ContainsKey("m"))
-                    {
-                        value_m = photonSession.Properties["m"];
-                    }
-
-                    sessionDescription += String.Format(" :: {0}/{1}", value_t, value_m);
-
-                    Debug.LogWarning($"key: {session.Key} | hostname: {session.Value.HostName} | {sessionDescription}");
-
-                    //BoltMatchmaking.JoinSession(photonSession, connectToken);
-                }
+                notifyClientStarted?.Invoke();
             }
         }
 
@@ -154,9 +113,10 @@ namespace MainMenu
         {
             Debug.LogWarning($"SessionCreatedOrUpdated: {session.Id} | {session.HostName}");
 
-            var splitId = session.Id.ToString().Split('-');
-
-            notifySessionCreatedOrUpdated?.Invoke(splitId[splitId.Length - 1]);
+            var guidStr = session.Id.ToString();
+            var shortGuid = guidStr.Substring(guidStr.Length - 5, 5);
+            
+            notifySessionCreatedOrUpdated?.Invoke("Host: " + shortGuid);
         }
 
         public override void SessionCreationFailed(UdpSession session, UdpSessionError errorReason)
