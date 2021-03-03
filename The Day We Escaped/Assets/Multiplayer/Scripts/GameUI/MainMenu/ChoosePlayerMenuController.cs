@@ -17,14 +17,6 @@ namespace MainMenu
 
         public UnityEvent notifySceneLoading;
         
-        private void Start()
-        {
-            if (!BoltNetwork.IsServer)
-            {
-                _text.text = "Server Player is choosing the Player number";
-            }
-        }
-
         /// <summary>
         /// Wait X seconds than load the scene, runs only in server
         /// </summary>

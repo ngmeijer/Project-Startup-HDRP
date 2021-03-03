@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Multiplayer.Scripts.SimpleObjectWithState;
 using UnityEngine;
 using UnityEngine.Events;
 

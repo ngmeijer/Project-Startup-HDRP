@@ -1762,7 +1762,7 @@ GameObject:
   - component: {fileID: 653147943}
   - component: {fileID: 653147946}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Camera Rail Spline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1819,6 +1819,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _transitionTime: 2
   _spline: {fileID: 653147943}
+  playOnStart: 0
 --- !u!1 &653388708
 GameObject:
   m_ObjectHideFlags: 0
@@ -10263,7 +10264,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1458061366}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0

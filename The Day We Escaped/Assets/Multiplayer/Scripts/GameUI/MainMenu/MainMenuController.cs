@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
 using Bolt;
 using Bolt.Matchmaking;
+using Bolt.Utils;
 using UdpKit;
+using UdpKit.Platform;
+using UdpKit.Platform.Photon;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 namespace MainMenu
 {
     public class MainMenuController : Bolt.GlobalEventListener
     {
-        private BoltConfig _config;
-
         [SerializeField] private bool _isShutingDown;
         [SerializeField] private string _gameLevel;
 
@@ -21,10 +24,12 @@ namespace MainMenu
         public UnityEvent notifyClientConnectToSession;
         public StringUnityEvent notifyBoltStartFailed;
         public UnityEvent notifyApplicationQuitting;
-        
+
+        public StringUnityEvent notifySessionCreatedOrUpdated;
+
         private void Start()
         {
-            _config = BoltRuntimeSettings.instance.GetConfigCopy();
+            BoltLauncher.SetUdpPlatform(new PhotonPlatform());
 
             if (BoltNetwork.IsRunning)
             {
@@ -38,7 +43,7 @@ namespace MainMenu
             {
                 BoltNetwork.Shutdown();
             }
-            
+
             StartCoroutine(StartServerRoutine());
         }
 
@@ -52,7 +57,7 @@ namespace MainMenu
                 yield return null;
             }
 
-            BoltLauncher.StartServer(_config);
+            BoltLauncher.StartServer();
         }
 
         public void StartClient()
@@ -61,7 +66,7 @@ namespace MainMenu
             {
                 BoltNetwork.Shutdown();
             }
-            
+
             StartCoroutine(StartClientRoutine());
         }
 
@@ -69,13 +74,13 @@ namespace MainMenu
         {
             notifyClientStarting?.Invoke();
             notifyStarting?.Invoke();
-            
+
             while (_isShutingDown)
             {
                 yield return null;
             }
 
-            BoltLauncher.StartClient(_config);
+            BoltLauncher.StartClient();
         }
 
         public override void BoltStartDone()
@@ -83,28 +88,87 @@ namespace MainMenu
             if (BoltNetwork.IsServer)
             {
                 var id = Guid.NewGuid().ToString().Split('-')[0];
-                var matchName = string.Format("{0} - {1}", id, _gameLevel);
+                var matchName = string.Format("{0}", id);
 
-                BoltMatchmaking.CreateSession(
-                    sessionID: matchName,
-                    sceneToLoad: _gameLevel
-                );
+                BoltMatchmaking.CreateSession(matchName, null, null);
+
+                // BoltMatchmaking.CreateSession(
+                //     sessionID: matchName,
+                //     sceneToLoad: _gameLevel
+                //  );
             }
             else if (BoltNetwork.IsClient)
             {
-                BoltMatchmaking.JoinRandomSession();
+                //BoltMatchmaking.JoinRandomSession();
             }
+        }
+
+        private void Update()
+        {
+            if (BoltNetwork.IsRunning && BoltNetwork.IsClient)
+            {
+                foreach (var session in BoltNetwork.SessionList)
+                {
+                    // Simple session
+                    UdpSession udpSession = session.Value as UdpSession;
+
+                    // Skip if is not a Photon session
+                    if (udpSession.Source != UdpSessionSource.Photon)
+                        continue;
+
+                    // Photon Session
+                    PhotonSession photonSession = udpSession as PhotonSession;
+
+                    string sessionDescription = String.Format("{0} / {1} ({2})",
+                        photonSession.Source, photonSession.HostName, photonSession.Id);
+
+
+                    object value_t = -1;
+                    object value_m = -1;
+
+                    if (photonSession.Properties.ContainsKey("t"))
+                    {
+                        value_t = photonSession.Properties["t"];
+                    }
+
+                    if (photonSession.Properties.ContainsKey("m"))
+                    {
+                        value_m = photonSession.Properties["m"];
+                    }
+
+                    sessionDescription += String.Format(" :: {0}/{1}", value_t, value_m);
+
+                    Debug.LogWarning($"key: {session.Key} | hostname: {session.Value.HostName} | {sessionDescription}");
+
+                    //BoltMatchmaking.JoinSession(photonSession, connectToken);
+                }
+            }
+        }
+
+        public override void SessionListUpdated(Map<Guid, UdpSession> sessionList)
+        {
+            Debug.LogFormat("Session list updated: {0} total sessions", sessionList.Count);
+        }
+
+        public override void SessionCreatedOrUpdated(UdpSession session)
+        {
+            Debug.LogWarning($"SessionCreatedOrUpdated: {session.Id} | {session.HostName}");
+
+            var splitId = session.Id.ToString().Split('-');
+
+            notifySessionCreatedOrUpdated?.Invoke(splitId[splitId.Length - 1]);
+        }
+
+        public override void SessionCreationFailed(UdpSession session, UdpSessionError errorReason)
+        {
+            Debug.LogError($"SessionCreationFailed: {session.Id} | {session.HostName} | {errorReason}");
         }
 
         public override void BoltShutdownBegin(AddCallback registerDoneCallback,
             UdpConnectionDisconnectReason disconnectReason)
         {
             _isShutingDown = true;
-            registerDoneCallback(() =>
-            {
-                _isShutingDown = false;
-
-            });
+            registerDoneCallback(() => { _isShutingDown = false; });
         }
 
         public override void BoltStartFailed(UdpConnectionDisconnectReason disconnectReason)
@@ -120,7 +184,7 @@ namespace MainMenu
                     msg += disconnectReason.ToString();
                     break;
             }
-            
+
             var errorEnum = disconnectReason.ToString();
             notifyBoltStartFailed?.Invoke(msg);
         }
@@ -139,12 +203,12 @@ namespace MainMenu
         public void QuitApplication()
         {
             notifyApplicationQuitting?.Invoke();
-            
+
             if (BoltNetwork.IsRunning)
             {
                 BoltNetwork.Shutdown();
             }
-            
+
             Application.Quit();
         }
     }

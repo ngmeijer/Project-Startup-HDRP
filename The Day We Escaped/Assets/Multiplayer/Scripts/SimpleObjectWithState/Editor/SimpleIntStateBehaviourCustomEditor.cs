@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using Multiplayer.Scripts.SimpleObjectWithState;
+using UnityEditor;
 using UnityEngine;
 
 [CustomEditor(typeof(SimpleIntStateBehaviour))]

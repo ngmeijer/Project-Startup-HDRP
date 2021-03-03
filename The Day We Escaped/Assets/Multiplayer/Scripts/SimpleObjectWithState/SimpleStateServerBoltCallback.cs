@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Multiplayer.Scripts.SimpleObjectWithState;
 using UnityEngine;
 
 [BoltGlobalBehaviour(BoltNetworkModes.Server)]
