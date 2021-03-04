@@ -13,9 +13,6 @@ namespace Multiplayer.Scripts.InGameMapDisplay
         [SerializeField] private Transform _target;
         private bool _isTargetNull;
 
-        [SerializeField] private bool _isVisible;
-        
-        
         private void Start()
         {
             if (_rect == null)
@@ -29,16 +26,6 @@ namespace Multiplayer.Scripts.InGameMapDisplay
             
             var pos2D = _converter.WorldPositionToMapPosition(_target.position);
             _rect.localPosition = new Vector3(pos2D.x, pos2D.y, 0);
-        }
-
-        private void OnBecameVisible()
-        {
-            _isVisible = true;
-        }
-        
-        private void OnBecameInvisible()
-        {
-            _isVisible = false;
         }
 
         public WorldMapToTextureMapConverter Converter
