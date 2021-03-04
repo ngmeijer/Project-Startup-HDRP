@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Bolt;
 using Multiplayer.Scripts.Audio;
+using Multiplayer.Scripts.Observers;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityTemplateProjects.PlayerTDEW;
@@ -45,6 +46,18 @@ public class GeneralBoltCallback : Bolt.GlobalEventListener
          {
             _currentPlayer = player;
          }
+      }
+      else if (entity.StateIs<IEnemyState>())
+      {
+         LocalEvents.instance.Raise(new EnemyLocalEvent(entity.gameObject, EnemyLocalEvent.EventType.Attached));
+      }
+   }
+
+   public override void EntityDetached(BoltEntity entity)
+   {
+      if (entity.StateIs<IEnemyState>())
+      {
+         LocalEvents.instance.Raise(new EnemyLocalEvent(entity.gameObject, EnemyLocalEvent.EventType.Detached));
       }
    }
 

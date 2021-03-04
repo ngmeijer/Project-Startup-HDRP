@@ -1,4 +1,5 @@
 ﻿using System;
+using Multiplayer.Scripts.Observers;
 using UnityEngine;
 
 namespace UnityTemplateProjects.PlayerTDEW
@@ -44,6 +45,13 @@ namespace UnityTemplateProjects.PlayerTDEW
             {
                 AttacheMainCamera();
             }
+            
+            LocalEvents.instance.Raise(new PlayerLocalEvent(this.gameObject, PlayerLocalEvent.EventType.Attached));
+        }
+
+        public override void Detached()
+        {
+            LocalEvents.instance.Raise(new PlayerLocalEvent(this.gameObject, PlayerLocalEvent.EventType.Detached));
         }
 
         public override void SimulateOwner()
